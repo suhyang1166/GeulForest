@@ -1,21 +1,41 @@
-import { api } from "../api";
-
-const API_KEY = process.env.REACT_APP_BOOK_API_KEY;
+import { bookApi } from "../bookApi";
 
 const getBooksApi = () => {
     return async (dispatch) => {
+        dispatch({
+            type: "GET_BOOK_REQUEST",
+        });
+
         try {
-            dispatch({
-                type: "GET_BOOK_REQUEST",
-            });
-            const aladinApi = await api.get(
+            const bestsellerApi = bookApi.get(
                 `/api/ItemList.aspx?QueryType=Bestseller&MaxResults=30&start=1&SearchTarget=Book`
-                // `ItemList.aspx`
             );
-            console.log("aaa", aladinApi);
+            const itemNewSpecialApi = bookApi.get(
+                `/api/ItemList.aspx?QueryType=ItemNewSpecial&MaxResults=30&start=1&SearchTarget=Book`
+            );
+            const itemEditorChoiceApi = bookApi.get(
+                `/api/ItemList.aspx?QueryType=ItemEditorChoice&MaxResults=30&start=1&CategoryId=1`
+            );
+
+            let [bestsellerBooks, itemNewSpecialBooks, itemEditorChoiceBooks] =
+                await Promise.all([
+                    bestsellerApi,
+                    itemNewSpecialApi,
+                    itemEditorChoiceApi,
+                ]);
+
+            dispatch({
+                type: "GET_BOOK_SUCCESS",
+                payload: {
+                    bestsellerBooks: bestsellerBooks.data,
+                    itemNewSpecialBooks: itemNewSpecialBooks.data,
+                    itemEditorChoiceBooks: itemEditorChoiceBooks.data,
+                },
+            });
         } catch (error) {
             dispatch({
                 type: "GET_BOOK_FAILURE",
+                payload: error.message,
             });
         }
     };

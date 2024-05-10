@@ -1,27 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainBtn from "../../../components/Btn/MainBtn";
-import { api } from "../../../redux/api";
-
-const API_KEY = process.env.REACT_APP_BOOK_API_KEY;
+import { bookAction } from "../../../redux/actions/bookAction";
+import { useDispatch, useSelector } from "react-redux";
+import MainSlider from "./component/MainSlider";
 
 const MainBook = () => {
-    const getData = async () => {
-        const aladinApi = await api.get(
-            // `/test/ItemList_20131101.js`
-            // `ItemList.aspx`
-            // `/api/ItemList.aspx?&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&Version=20131101
-            // `
-            `/api/ItemList.aspx?QueryType=Bestseller&MaxResults=30&start=1&SearchTarget=Book`
-        );
-        console.log("bbb", aladinApi.data.item);
-    };
+    const dispatch = useDispatch();
+    const { bestsellerBooks, itemNewSpecialBooks, itemEditorChoiceBooks } =
+        useSelector((state) => state.book);
+    // console.log("eee", bestsellerBooks);
 
-    getData();
+    useEffect(() => {
+        dispatch(bookAction.getBooksApi());
+    }, []);
+
     return (
         <div>
             <MainBtn />
-            <h1>MainBook</h1>
-            <img></img>
+            {bestsellerBooks.item && (
+                <MainSlider bestseller={bestsellerBooks?.item[0]} />
+            )}
         </div>
     );
 };
