@@ -11,7 +11,7 @@ const getWebtoonApi = () => {
         `/?perPage=2&page=1&service=naver&updateDay=tue`
       );
 
-      let [todayWebtoons] = await Promise([todayWebtoonApi]);
+      let [todayWebtoons] = await Promise.all([todayWebtoonApi]);
 
       dispatch({
         type: "GET_WEBTOON_SUCCESS",

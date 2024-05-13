@@ -7,7 +7,7 @@ import MainSlider from "./component/MainSlider";
 const MainWebtoon = () => {
   const dispatch = useDispatch();
   const { todayWebtoons } = useSelector((state) => state.webtoons);
-  console.log("ggg", todayWebtoons);
+
 
   useEffect(() => {
     dispatch(webtoonAction.getWebtoonApi());
