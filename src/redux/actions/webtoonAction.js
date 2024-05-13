@@ -7,9 +7,11 @@ const getWebtoonApi = () => {
     });
 
     try {
-      const todayWebtoons = await webtoonApi.get(
-        `https://korea-webtoon-api.herokuapp.com`
+      const todayWebtoonApi = webtoonApi.get(
+        `/?perPage=2&page=1&service=naver&updateDay=tue`
       );
+
+      let [todayWebtoons] = await Promise([todayWebtoonApi]);
 
       dispatch({
         type: "GET_WEBTOON_SUCCESS",

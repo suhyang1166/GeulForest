@@ -1,3 +1,4 @@
 import { combineReducers } from "redux";
+import webtoonReduer from "./webtoonReducer";
 
-export default combineReducers({});
+export default combineReducers({ webtoons: webtoonReduer });

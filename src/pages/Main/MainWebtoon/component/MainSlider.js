@@ -1,6 +1,7 @@
 import React from "react";
 
 const MainSlider = ({ webtoons }) => {
+  console.log("aaa", webtoons);
   return (
     <div>
       <div
