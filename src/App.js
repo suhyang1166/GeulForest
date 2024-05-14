@@ -12,24 +12,24 @@ import MainWebtoon from "./pages/Main/MainWebtoon/MainWebtoon";
 import { createGlobalStyle } from "styled-components";
 
 function App() {
-  return (
-    <>
-      <GlobalStyle />
-      <Header />
-      <Routes>
-        {/* 메인 도서/웹툰 라우터 설정 재정리 필요 + 도서상세 */}
-        <Route path="/" element={<MainBook />} />
-        <Route path="/webtoon" element={<MainWebtoon />} />
-        <Route path="/feed" element={<Feed />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/category" element={<Category />} />
-        {/* 나중에 PrivateRoute 적용 예정 */}
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <GlobalStyle />
+            <Header />
+            <Routes>
+                {/* 메인 도서/웹툰 라우터 설정 재정리 필요 + 도서상세 */}
+                <Route path="/" element={<MainBook />} />
+                <Route path="/webtoon" element={<MainWebtoon />} />
+                <Route path="/feed" element={<Feed />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/category" element={<Category />} />
+                {/* 나중에 PrivateRoute 적용 예정 */}
+                <Route path="/mypage" element={<MyPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+            <Footer />
+        </>
+    );
 }
 
 export default App;
