@@ -12,6 +12,7 @@ import menuUserCheck from "../../assets/images/Male User-1.png";
 
 const Footer = () => {
   const navigate = useNavigate();
+
   const [activeMenu, setActiveMenu] = useState("today");
 
   return (
