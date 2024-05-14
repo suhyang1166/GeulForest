@@ -73,8 +73,8 @@ const Footer = () => {
 const Container = styled.div`
   position: fixed;
   bottom: 0;
-  left: 0;
   width: 100%;
+  max-width: 500px;
   height: 80px;
   background: #eee;
   display: flex;
@@ -96,6 +96,7 @@ const Span = styled.span`
 const MenuToday = styled.div`
   width: 100%;
   height: 50px;
+  cursor: pointer;
   background: ${({ active }) =>
     active
       ? `url(${menuTodayCheck}) center no-repeat`
@@ -104,6 +105,7 @@ const MenuToday = styled.div`
 const MenuFeed = styled.div`
   width: 100%;
   height: 50px;
+  cursor: pointer;
   background: ${({ active }) =>
     active
       ? `url(${menuFeedCheck}) center no-repeat`
@@ -112,6 +114,7 @@ const MenuFeed = styled.div`
 const MenuSearch = styled.div`
   width: 100%;
   height: 50px;
+  cursor: pointer;
   background: ${({ active }) =>
     active
       ? `url(${menuSearchCheck}) center no-repeat`
@@ -120,6 +123,7 @@ const MenuSearch = styled.div`
 const MenuUser = styled.div`
   width: 100%;
   height: 50px;
+  cursor: pointer;
   background: ${({ active }) =>
     active
       ? `url(${menuUserCheck}) center no-repeat`

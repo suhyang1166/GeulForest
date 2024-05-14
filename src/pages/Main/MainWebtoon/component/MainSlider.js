@@ -7,7 +7,8 @@ const MainSlider = ({ webtoons }) => {
     <div>
       <div
         style={{
-          backgroundImage: `url(${webtoons?.img})`,
+          background: "#000",
+          // backgroundImage: `url(${webtoons?.img})`,
           width: "400px",
           height: "600px",
         }}
