@@ -16,7 +16,7 @@ const MainBook = () => {
 
   return (
     <div>
-      {/* <MainBtn /> */}
+      <MainBtn />
       {bestsellerBooks.item && (
         <MainSlider bestseller={bestsellerBooks?.item[1]} />
       )}
