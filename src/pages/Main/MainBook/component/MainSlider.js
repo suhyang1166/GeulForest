@@ -37,7 +37,7 @@ const Title = styled.p`
   padding-left: 20px;
   font-weight: bold;
   font-size: 20px;
-  z-index: 5;
+  z-index: 10;
 `;
 
 const RankAndAuthor = styled.div`
@@ -48,6 +48,11 @@ const RankAndAuthor = styled.div`
   padding-left: 20px;
   font-size: 12px;
   letter-spacing: -0.3px;
+  z-index: 10;
+`;
+
+const SlideBox = styled.div`
+  width: 100%;
   &::before {
     content: "";
     position: absolute;
@@ -55,8 +60,14 @@ const RankAndAuthor = styled.div`
     left: 0;
     width: 100%;
     height: 200px;
+    background: linear-gradient(transparent, #000);
+    z-index: 7;
   }
 `;
+
+const Line = styled.span``;
+const Num = styled.span``;
+const Btn = styled.button``;
 
 const MainSlider = ({ bestseller }) => {
   console.log(bestseller);
@@ -65,9 +76,14 @@ const MainSlider = ({ bestseller }) => {
       <MainBook bestseller={bestseller} />
       <Title>"{bestseller?.title.split("-", 1)}"</Title>
       <RankAndAuthor>
-        베스트셀러 : {bestseller?.bestRank}위,{" "}
+        베스트 셀러 : {bestseller?.bestRank}위,{" "}
         {bestseller?.author.split("(", 1)} 저자(글)
       </RankAndAuthor>
+      <SlideBox>
+        <Line></Line>
+        <Num></Num>
+        <Btn></Btn>
+      </SlideBox>
     </MainBg>
   );
 };
