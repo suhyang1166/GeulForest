@@ -11,123 +11,123 @@ import menuUser from "../../assets/images/Male User.png";
 import menuUserCheck from "../../assets/images/Male User-1.png";
 
 const Footer = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const [activeMenu, setActiveMenu] = useState("today");
+    const [activeMenu, setActiveMenu] = useState("today");
 
-  return (
-    <Container>
-      <MenuContainer>
-        <MenuToday
-          onClick={() => {
-            navigate("/");
-            setActiveMenu("today");
-          }}
-          active={activeMenu === "today"}
-        >
-          <Span>투데이</Span>
-        </MenuToday>
-      </MenuContainer>
+    return (
+        <Container>
+            <MenuContainer>
+                <MenuToday
+                    onClick={() => {
+                        navigate("/");
+                        setActiveMenu("today");
+                    }}
+                    active={activeMenu === "today"}
+                >
+                    <Span>투데이</Span>
+                </MenuToday>
+            </MenuContainer>
 
-      <MenuContainer>
-        <MenuFeed
-          onClick={() => {
-            navigate("/feed");
-            setActiveMenu("feed");
-          }}
-          active={activeMenu === "feed"}
-        >
-          <Span>피드</Span>
-        </MenuFeed>
-      </MenuContainer>
+            <MenuContainer>
+                <MenuFeed
+                    onClick={() => {
+                        navigate("/feed");
+                        setActiveMenu("feed");
+                    }}
+                    active={activeMenu === "feed"}
+                >
+                    <Span>피드</Span>
+                </MenuFeed>
+            </MenuContainer>
 
-      <MenuContainer>
-        <MenuSearch
-          onClick={() => {
-            navigate("/search");
-            setActiveMenu("search");
-          }}
-          active={activeMenu === "search"}
-        >
-          <Span>검색</Span>
-        </MenuSearch>
-      </MenuContainer>
+            <MenuContainer>
+                <MenuSearch
+                    onClick={() => {
+                        navigate("/search");
+                        setActiveMenu("search");
+                    }}
+                    active={activeMenu === "search"}
+                >
+                    <Span>검색</Span>
+                </MenuSearch>
+            </MenuContainer>
 
-      <MenuContainer>
-        <MenuUser
-          onClick={() => {
-            navigate("/mypage");
-            setActiveMenu("mypage");
-          }}
-          active={activeMenu === "mypage"}
-        >
-          <Span>내서재</Span>
-        </MenuUser>
-      </MenuContainer>
-    </Container>
-  );
+            <MenuContainer>
+                <MenuUser
+                    onClick={() => {
+                        navigate("/mypage");
+                        setActiveMenu("mypage");
+                    }}
+                    active={activeMenu === "mypage"}
+                >
+                    <Span>내서재</Span>
+                </MenuUser>
+            </MenuContainer>
+        </Container>
+    );
 };
 
 //-----------style components--------------
 
 const Container = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  max-width: 500px;
-  height: 80px;
-  background: #eee;
-  display: flex;
-  justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 500px;
+    height: 80px;
+    background: #eee;
+    display: flex;
+    justify-content: space-around;
 `;
 const MenuContainer = styled.div`
-  width: 100%;
-  height: 60px;
-  position: relative;
+    width: 100%;
+    height: 60px;
+    position: relative;
 `;
 const Span = styled.span`
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%);
-  font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 12px;
 `;
 
 const MenuToday = styled.div`
-  width: 100%;
-  height: 50px;
-  cursor: pointer;
-  background: ${({ active }) =>
-    active
-      ? `url(${menuTodayCheck}) center no-repeat`
-      : `url(${menuToday}) center no-repeat`};
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    background: ${({ active }) =>
+        active
+            ? `url(${menuTodayCheck}) center no-repeat`
+            : `url(${menuToday}) center no-repeat`};
 `;
 const MenuFeed = styled.div`
-  width: 100%;
-  height: 50px;
-  cursor: pointer;
-  background: ${({ active }) =>
-    active
-      ? `url(${menuFeedCheck}) center no-repeat`
-      : `url(${menuFeed}) center no-repeat`};
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    background: ${({ active }) =>
+        active
+            ? `url(${menuFeedCheck}) center no-repeat`
+            : `url(${menuFeed}) center no-repeat`};
 `;
 const MenuSearch = styled.div`
-  width: 100%;
-  height: 50px;
-  cursor: pointer;
-  background: ${({ active }) =>
-    active
-      ? `url(${menuSearchCheck}) center no-repeat`
-      : `url(${menuSearch}) center no-repeat`};
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    background: ${({ active }) =>
+        active
+            ? `url(${menuSearchCheck}) center no-repeat`
+            : `url(${menuSearch}) center no-repeat`};
 `;
 const MenuUser = styled.div`
-  width: 100%;
-  height: 50px;
-  cursor: pointer;
-  background: ${({ active }) =>
-    active
-      ? `url(${menuUserCheck}) center no-repeat`
-      : `url(${menuUser}) center no-repeat`};
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    background: ${({ active }) =>
+        active
+            ? `url(${menuUserCheck}) center no-repeat`
+            : `url(${menuUser}) center no-repeat`};
 `;
 
 export default Footer;
