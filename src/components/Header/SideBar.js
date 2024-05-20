@@ -4,7 +4,7 @@ import CLOSE from "../../assets/header/close.svg";
 import STAR from "../../assets/header/star.svg";
 
 const SlideBarWrap = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   max-width: 500px;
@@ -15,6 +15,7 @@ const SlideBarWrap = styled.div`
   align-items: center;
   gap: 50px;
   background: #fff;
+  overflow-x: hidden;
   z-index: 100;
 `;
 

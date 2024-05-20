@@ -32,17 +32,17 @@ const BookImg = styled.div`
   }
 `;
 
-const BookItem = ({ book }) => {
+const NewBook = ({ newBook }) => {
   return (
     <BookWrap>
       <BookImg>
-        <img src={book?.cover} />
+        <img src={newBook?.cover} />
         <span>하트</span>
       </BookImg>
-      <p>{book?.title.split("-", 1)}</p>
-      <p>{book?.author.split(" ", 1)} 저자</p>
+      <p>{newBook?.title.split("-", 1)}</p>
+      <p>{newBook?.author.split(" ", 1)} 저자</p>
     </BookWrap>
   );
 };
 
-export default BookItem;
+export default NewBook;
