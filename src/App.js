@@ -9,10 +9,12 @@ import Category from "./pages/Category/Category";
 import MyPage from "./pages/MyPage/MyPage";
 import NotFoundPage from "./pages/Nodata/NotFoundPage";
 import MainWebtoon from "./pages/Main/MainWebtoon/MainWebtoon";
+import { createGlobalStyle } from "styled-components";
 
 function App() {
     return (
         <>
+            <GlobalStyle />
             <Header />
             <Routes>
                 {/* 메인 도서/웹툰 라우터 설정 재정리 필요 + 도서상세 */}
@@ -31,3 +33,27 @@ function App() {
 }
 
 export default App;
+
+// ------- styled components -------
+const GlobalStyle = createGlobalStyle`
+/* reset & font */
+@import url(./assets/font/Font.css);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    font-family: "SD M";
+    width:100%;
+    max-width:500px;
+    margin: 0 auto;
+}`;
