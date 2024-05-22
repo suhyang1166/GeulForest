@@ -7,13 +7,14 @@ const MainSlider = ({ webtoons }) => {
     <div>
       <div
         style={{
-          background: "#000",
-          // backgroundImage: `url(${webtoons?.img})`,
-          width: "400px",
-          height: "600px",
+          background: `url(${webtoons?.img})`,
+          width: "100vw",
+          height: "50vh",
         }}
       ></div>
-      <p>{webtoons?.title}</p>
+      <h3>{webtoons?.title}</h3>
+      <p>작가 | {webtoons?.author}</p>
+      <p>관심 | {webtoons?.fanCount}만</p>
     </div>
   );
 };
