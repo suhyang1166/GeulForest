@@ -1,5 +1,8 @@
 const initialState = {
   todayWebtoons: {},
+  providerWebtoons: {},
+  pouplarWebtoons: {},
+  authorWebtoons: {},
 };
 
 const webtoonReduer = (state = initialState, action) => {
@@ -10,6 +13,9 @@ const webtoonReduer = (state = initialState, action) => {
       return {
         ...state,
         todayWebtoons: payload.todayWebtoons,
+        providerWebtoons: payload.providerWebtoons,
+        pouplarWebtoons: payload.pouplarWebtoons,
+        authorWebtoons: payload.authorWebtoons,
       };
     default:
       return state;
