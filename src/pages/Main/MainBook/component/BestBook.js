@@ -7,12 +7,10 @@ const BookWrap = styled.div`
     font-weight: bold;
     font-size: 12px;
     margin: 0;
-    margin-top: 8px;
   }
   p:nth-of-type(2) {
     font-size: 10px;
     margin: 0;
-    line-height: 10px;
   }
 `;
 
@@ -20,7 +18,6 @@ const BookImg = styled.div`
   width: 120px;
   height: 180px;
   position: relative;
-  box-shadow: 0 0 2px #d9d9d9;
   img {
     position: absolute;
     top: 0;
@@ -30,22 +27,21 @@ const BookImg = styled.div`
   }
   span {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0;
+    right: 0;
   }
 `;
 
-const BookItem = ({ book }) => {
+const BestBook = ({ best }) => {
   return (
     <BookWrap>
       <BookImg>
-        <img src={book?.cover} />
-        <span>하트</span>
+        <img src={best?.cover} />
       </BookImg>
-      <p>{book?.title.split("-", 1)}</p>
-      <p>{book?.author.split(" ", 1)} 저자</p>
+      <p>{best?.title.split("-", 1)}</p>
+      <p>{best?.author.split(" ", 1)} 저자</p>
     </BookWrap>
   );
 };
 
-export default BookItem;
+export default BestBook;
