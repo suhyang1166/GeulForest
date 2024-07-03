@@ -16,14 +16,14 @@ const ItemWrap = styled.div`
 `;
 
 const NewBooks = ({ itemNewSpecialBooks }) => {
-  console.log("ttt", itemNewSpecialBooks);
+  // console.log("ttt", itemNewSpecialBooks);
 
   const categorys = itemNewSpecialBooks.map((category) => {
-    console.log("ccc", category.categoryName);
+    // console.log("ccc", category.categoryName);
     return category.categoryName.split(">", 2)[1];
   });
 
-  console.log(categorys);
+  // console.log(categorys);
 
   return (
     <NewBookWrap>
