@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 
 const BookWrap = styled.div`
   height: 100%;
@@ -29,18 +32,34 @@ const BookImg = styled.div`
     height: 100%;
   }
   span {
+    width: 15px;
+    height: 15px;
     position: absolute;
     top: 5px;
     right: 5px;
+    color: ${(props) => (props.changeIcon ? "red" : "white")};
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
   }
 `;
 
 const BookItem = ({ book }) => {
+  const [changeIcon, setChangeIcon] = useState(false);
+
+  const addBook = () => {
+    setChangeIcon((prev) => !prev);
+  };
+
   return (
     <BookWrap>
       <BookImg>
         <img src={book?.cover} />
-        <span>하트</span>
+        <span onClick={addBook}>
+          <FontAwesomeIcon
+            icon={changeIcon ? solidHeart : regularHeart}
+            color={changeIcon ? "red" : "white"}
+          />
+        </span>
       </BookImg>
       <p>{book?.title.split("-", 1)}</p>
       <p>{book?.author.split(" ", 1)} 저자</p>

@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { styled } from "styled-components";
-import { useSelector } from "react-redux";
 import BookItem from "./BookItem";
 
 const Container = styled.div`
@@ -86,19 +85,60 @@ const RandomImg = styled.div`
 `;
 
 const ItemWrap = styled.div`
-  /* width: 100%; */
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 15px;
   margin-bottom: 100px;
-  overflow-y: hidden;
+  overflow-x: scroll;
+  cursor: pointer;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const EditorChoice = ({ itemEditorChoiceBooks }) => {
-  console.log("iiii", itemEditorChoiceBooks);
-  const randomIdx = Math.floor(Math.random() * 15);
+  const scrollRef = useRef(null);
+  const [isDrag, setIsDrag] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (isDrag) {
+        const newScrollLeft = startX - e.pageX + scrollLeft;
+        scrollRef.current.scrollLeft = newScrollLeft;
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDrag(false);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDrag, startX, scrollLeft]);
+
+  const onDragStart = (e) => {
+    e.preventDefault();
+    setIsDrag(true);
+    setStartX(e.pageX);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const [randomIdx, setRandomIdx] = useState(null);
+
+  // 컴포넌트가 처음 마운트될 때 랜덤 인덱스 설정
+  useState(() => {
+    setRandomIdx(Math.floor(Math.random() * 15));
+  }, []);
 
   // 현재시간함수
   const days = ["일", "월", "화", "수", "목", "금", "토"];
@@ -122,12 +162,15 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
             <p>{itemEditorChoiceBooks[randomIdx]?.author.split(" ", 1)} 저자</p>
           </RandomTitle>
           <RandomImg>
-            <img src={itemEditorChoiceBooks[randomIdx]?.cover} />
+            <img
+              src={itemEditorChoiceBooks[randomIdx]?.cover}
+              alt="randombook"
+            />
             {/* <span>하트</span> */}
           </RandomImg>
         </RandomItem>
       </RandomBook>
-      <ItemWrap>
+      <ItemWrap onMouseDown={onDragStart} ref={scrollRef}>
         {itemEditorChoiceBooks.map((book, idx) => (
           <BookItem key={idx} book={book} />
         ))}
