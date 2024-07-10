@@ -100,6 +100,7 @@ const ItemWrap = styled.div`
 `;
 
 const EditorChoice = ({ itemEditorChoiceBooks }) => {
+  // 가로스크롤 이벤트 함수
   const scrollRef = useRef(null);
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -133,6 +134,7 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
     setScrollLeft(scrollRef.current.scrollLeft);
   };
 
+  // 드래그 이벤트로 발생되는 변동사항으로 랜덤 이미지 계속 변경됨 > 새로고침 할때만 랜덤함수 실행
   const [randomIdx, setRandomIdx] = useState(null);
 
   // 컴포넌트가 처음 마운트될 때 랜덤 인덱스 설정
