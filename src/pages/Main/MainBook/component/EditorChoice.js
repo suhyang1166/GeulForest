@@ -41,10 +41,10 @@ const RandomBook = styled.div`
     left: 0;
     width: inherit;
     height: inherit;
-    background-image: url(${(props) => props.backgroundImage});
+    background-image: url(${(props) => props.bgImg});
     background-size: cover;
     background-position: center;
-    box-shadow: 0 0 3px #d9d9d9;
+    box-shadow: 0 0 2px #000;
     border-radius: 10px;
     opacity: 0.2;
     z-index: -1;
@@ -100,6 +100,7 @@ const ItemWrap = styled.div`
 `;
 
 const EditorChoice = ({ itemEditorChoiceBooks }) => {
+  // 가로스크롤 이벤트 함수
   const scrollRef = useRef(null);
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -133,6 +134,7 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
     setScrollLeft(scrollRef.current.scrollLeft);
   };
 
+  // 드래그 이벤트로 발생되는 변동사항으로 랜덤 이미지 계속 변경됨 > 새로고침 할때만 랜덤함수 실행
   const [randomIdx, setRandomIdx] = useState(null);
 
   // 컴포넌트가 처음 마운트될 때 랜덤 인덱스 설정
@@ -155,7 +157,7 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
           {month}월 {day}일 {week}요일 업데이트
         </p>
       </Title>
-      <RandomBook backgroundImage={itemEditorChoiceBooks[randomIdx]?.cover}>
+      <RandomBook bgImg={itemEditorChoiceBooks[randomIdx]?.cover}>
         <RandomItem>
           <RandomTitle>
             <h3>{itemEditorChoiceBooks[randomIdx]?.title.split(" ", 1)}</h3>
