@@ -3,43 +3,17 @@ import { styled } from "styled-components";
 import BestBook from "./BestBook";
 import BookItem from "./BookItem";
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  gap: 20px;
-  padding: 0 20px;
-  overflow: hidden;
-`;
-
-const Title = styled.div`
-  h1 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  P {
-    font-size: 12px;
-    color: #888;
-    margin: 0;
-  }
-`;
+const BestBookWrap = styled.div``;
 
 const ItemWrap = styled.div`
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 15px;
   margin-bottom: 100px;
-  overflow-x: scroll;
-  cursor: pointer;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  overflow-y: hidden;
 `;
 
 // 현재시간함수
@@ -51,19 +25,17 @@ const week = days[date.getDay()];
 
 const BestSeller = ({ bestseller }) => {
   return (
-    <Container>
-      <Title>
-        <h1>지금! 베스트 셀러 TOP 10</h1>
-        <p>
-          {month}월 {day}일 {week}요일 업데이트
-        </p>
-      </Title>
+    <BestBookWrap>
+      <h1>지금! 베스트 셀러 TOP 10</h1>
+      <p>
+        {month}월 {day}일 {week}요일 업데이트
+      </p>
       <ItemWrap>
         {bestseller.map((book, idx) => (
           <BookItem key={idx} book={book} />
         ))}
       </ItemWrap>
-    </Container>
+    </BestBookWrap>
   );
 };
 
