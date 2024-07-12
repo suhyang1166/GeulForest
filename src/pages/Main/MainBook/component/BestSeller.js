@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import BestBook from "./BestBook";
+import BookItem from "./BookItem";
 
 const Container = styled.div`
   width: 100%;
@@ -58,8 +59,8 @@ const BestSeller = ({ bestseller }) => {
         </p>
       </Title>
       <ItemWrap>
-        {bestseller.map((best, idx) => (
-          <BestBook key={idx} best={best} />
+        {bestseller.map((book, idx) => (
+          <BookItem key={idx} book={book} />
         ))}
       </ItemWrap>
     </Container>

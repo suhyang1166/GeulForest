@@ -79,6 +79,7 @@ const Container = styled.div`
   background: #eee;
   display: flex;
   justify-content: space-around;
+  z-index: 30;
 `;
 const MenuContainer = styled.div`
   width: 100%;

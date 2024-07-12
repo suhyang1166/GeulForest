@@ -1,16 +1,31 @@
-import "./App.css";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import MainBook from "./pages/Main/MainBook/MainBook";
+import { useDispatch } from "react-redux";
 import Feed from "./pages/Feed/Feed";
 import Search from "./pages/Search/Search";
 import Category from "./pages/Category/Category";
 import MyPage from "./pages/MyPage/MyPage";
 import NotFoundPage from "./pages/Nodata/NotFoundPage";
 import MainWebtoon from "./pages/Main/MainWebtoon/MainWebtoon";
+import Loading from "./pages/Nodata/Loading";
+import { bookAction } from "./redux/actions/bookAction";
 
 function App() {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
+
+  useEffect(() => {
+    dispatch(bookAction.getBooksApi()).then(() => {
+      setLoading(false); // 데이터 로드 후 로딩 상태 업데이트
+    });
+  }, [dispatch]);
+
+  if (loading) {
+    return <Loading />; // 로딩 중일 때 로딩 스피너 표시
+  }
   return (
     <>
       <Header />

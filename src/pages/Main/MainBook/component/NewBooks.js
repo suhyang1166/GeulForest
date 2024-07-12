@@ -33,7 +33,7 @@ const ItemWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   overflow-x: scroll;
   cursor: pointer;
   &::-webkit-scrollbar {
@@ -57,9 +57,9 @@ const NewBooks = ({ itemNewSpecialBooks }) => {
         <h1>따끈따근 신간 도서</h1>
         <p>모두가 기다리던 신간 바로 여기서 확인하세요!</p>
       </Title>
-      <ul>
+      {/* <ul>
         <li>categorys</li>
-      </ul>
+      </ul> */}
       <ItemWrap>
         {itemNewSpecialBooks.map((newBook, idx) => (
           <NewBook key={idx} newBook={newBook} />

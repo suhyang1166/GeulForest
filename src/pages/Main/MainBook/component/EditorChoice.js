@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { styled } from "styled-components";
 import BookItem from "./BookItem";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 100%;
@@ -91,7 +92,7 @@ const ItemWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   overflow-x: scroll;
   cursor: pointer;
   &::-webkit-scrollbar {
