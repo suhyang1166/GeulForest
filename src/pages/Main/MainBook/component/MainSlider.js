@@ -70,7 +70,6 @@ const Num = styled.span``;
 const Btn = styled.button``;
 
 const MainSlider = ({ bestseller }) => {
-  console.log("sss", bestseller);
   return (
     <MainBg bestseller={bestseller}>
       <MainBook bestseller={bestseller} />

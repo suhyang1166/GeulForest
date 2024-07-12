@@ -17,7 +17,7 @@ const Container = styled.div`
   align-items: center;
   padding: 0 20px;
   z-index: 1000;
-  transition: all 0.5s; /* top 위치 변경 시 부드럽게 트랜지션 */
+  transition: all 0.3s ease-in-out;
 `;
 
 const Bg = styled.div`
@@ -28,10 +28,9 @@ const Bg = styled.div`
   width: 100%;
   max-width: 500px;
   height: 50px;
-  background: #000;
+  background: rgba(0, 0, 0, ${(props) => (props.showNav ? "0.3" : "0")});
   z-index: 1000;
-  transition: all 0.5s;
-  opacity: ${(props) => (props.showNav ? "0.3" : "0")};
+  transition: all 0.3s ease-in-out;
 `;
 
 const Logo = styled.div`
@@ -52,9 +51,11 @@ const Toggle = styled.div`
 const Header = () => {
   const [isToggle, setToggle] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [showNav, setShowNav] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const isToggleOpen = () => {
-    setToggle((istoggle) => !istoggle);
+    setToggle(!isToggle);
   };
 
   const handleCloseSideBar = () => {
@@ -69,11 +70,6 @@ const Header = () => {
     window.addEventListener("scroll", updateScroll);
     return () => window.removeEventListener("scroll", updateScroll);
   }, []);
-
-  // 네비게이션 바 표시 상태를 관리하는 state
-  const [showNav, setShowNav] = useState(true);
-  // 마지막 스크롤 위치를 저장하는 state
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {

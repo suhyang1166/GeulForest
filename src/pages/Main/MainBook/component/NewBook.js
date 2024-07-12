@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import Heart from "../../../../components/Heart/Heart";
+
+const Container = styled.div`
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
 
 const BookWrap = styled.div`
-  height: 100%;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    background-image: url(${(props) => props.bgImg});
+    background-size: cover;
+    background-position: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+    opacity: 0.2;
+  }
   p:nth-of-type(1) {
     font-weight: bold;
     font-size: 12px;
@@ -15,12 +46,12 @@ const BookWrap = styled.div`
 `;
 
 const BookImg = styled.div`
-  width: 120px;
-  height: 180px;
+  width: 130px;
+  height: 190px;
   position: relative;
   img {
     position: absolute;
-    top: 0;
+    bottom: -15px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -32,16 +63,43 @@ const BookImg = styled.div`
   }
 `;
 
+const TitleWrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+`;
+
+const BookTitle = styled.div`
+  width: 100%;
+  word-break: keep-all;
+  h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: -1px;
+  }
+  p {
+    font-size: 12px;
+  }
+`;
+
 const NewBook = ({ newBook }) => {
   return (
-    <BookWrap>
-      <BookImg>
-        <img src={newBook?.cover} />
-        <span>하트</span>
-      </BookImg>
-      <p>{newBook?.title.split("-", 1)}</p>
-      <p>{newBook?.author.split(" ", 1)} 저자</p>
-    </BookWrap>
+    <Container>
+      <BookWrap bgImg={newBook?.cover}>
+        <BookImg>
+          <img src={newBook?.cover} />
+        </BookImg>
+      </BookWrap>
+      <TitleWrap>
+        <BookTitle>
+          <h3>{newBook?.title.split("-", 1)}</h3>
+          <p>{newBook?.author.split(" ", 1)} 저자</p>
+        </BookTitle>
+        <Heart />
+      </TitleWrap>
+    </Container>
   );
 };
 

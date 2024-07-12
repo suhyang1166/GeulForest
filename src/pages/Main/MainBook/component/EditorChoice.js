@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { styled } from "styled-components";
 import BookItem from "./BookItem";
-import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 100%;
@@ -42,10 +41,10 @@ const RandomBook = styled.div`
     left: 0;
     width: inherit;
     height: inherit;
-    background-image: url(${(props) => props.backgroundImage});
+    background-image: url(${(props) => props.bgImg});
     background-size: cover;
     background-position: center;
-    box-shadow: 0 0 3px #d9d9d9;
+    box-shadow: 0 0 2px #000;
     border-radius: 10px;
     opacity: 0.2;
     z-index: -1;
@@ -92,7 +91,7 @@ const ItemWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   overflow-x: scroll;
   cursor: pointer;
   &::-webkit-scrollbar {
@@ -158,7 +157,7 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
           {month}월 {day}일 {week}요일 업데이트
         </p>
       </Title>
-      <RandomBook backgroundImage={itemEditorChoiceBooks[randomIdx]?.cover}>
+      <RandomBook bgImg={itemEditorChoiceBooks[randomIdx]?.cover}>
         <RandomItem>
           <RandomTitle>
             <h3>{itemEditorChoiceBooks[randomIdx]?.title.split(" ", 1)}</h3>

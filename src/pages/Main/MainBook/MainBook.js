@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainBtn from "../../../components/Btn/MainBtn";
-import { useSelector } from "react-redux";
+import { bookAction } from "../../../redux/actions/bookAction";
+import { useDispatch, useSelector } from "react-redux";
 import MainSlider from "./component/MainSlider";
 import EditorChoice from "./component/EditorChoice";
 import NewBooks from "./component/NewBooks";
@@ -11,8 +12,13 @@ import "swiper/swiper-bundle.css";
 import "./component/swiper.css";
 
 const MainBook = () => {
+  const dispatch = useDispatch();
   const { bestsellerBooks, itemNewSpecialBooks, itemEditorChoiceBooks } =
     useSelector((state) => state.book);
+
+  useEffect(() => {
+    dispatch(bookAction.getBooksApi());
+  }, [dispatch]);
 
   return (
     <div>
@@ -39,13 +45,13 @@ const MainBook = () => {
           ))}
         </Swiper>
       )}
-      {itemEditorChoiceBooks?.item && (
+      {itemEditorChoiceBooks.item && (
         <EditorChoice itemEditorChoiceBooks={itemEditorChoiceBooks.item} />
       )}
-      {itemNewSpecialBooks?.item && (
+      {itemNewSpecialBooks.item && (
         <NewBooks itemNewSpecialBooks={itemNewSpecialBooks.item} />
       )}
-      {bestsellerBooks?.item && (
+      {bestsellerBooks.item && (
         <BestSeller bestseller={bestsellerBooks?.item} />
       )}
     </div>
