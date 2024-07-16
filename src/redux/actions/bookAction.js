@@ -1,6 +1,6 @@
 import { bookApi } from "../bookApi";
 
-const getBooksApi = () => {
+const getBooksApi = (itemId) => {
   return async (dispatch) => {
     dispatch({
       type: "GET_BOOK_REQUEST",
@@ -16,13 +16,22 @@ const getBooksApi = () => {
       const itemEditorChoiceApi = bookApi.get(
         `/api/ItemList.aspx?QueryType=ItemEditorChoice&MaxResults=30&start=1&CategoryId=1`
       );
+      const bookDetailApi = bookApi.get(
+        `/api/ItemLookUp.aspx?itemIdType=itemId&ItemId=${itemId}&OptResult=ebookList,usedList,reviewList,ratingInfo`
+      );
 
-      let [bestsellerBooks, itemNewSpecialBooks, itemEditorChoiceBooks] =
-        await Promise.all([
-          bestsellerApi,
-          itemNewSpecialApi,
-          itemEditorChoiceApi,
-        ]);
+      let [
+        bestsellerBooks,
+        itemNewSpecialBooks,
+        itemEditorChoiceBooks,
+        bookDetailBooks,
+      ] = await Promise.all([
+        bestsellerApi,
+        itemNewSpecialApi,
+        itemEditorChoiceApi,
+        bookDetailApi,
+      ]);
+      console.log("DETAIL", bookDetailBooks);
 
       dispatch({
         type: "GET_BOOK_SUCCESS",
@@ -30,6 +39,7 @@ const getBooksApi = () => {
           bestsellerBooks: bestsellerBooks.data,
           itemNewSpecialBooks: itemNewSpecialBooks.data,
           itemEditorChoiceBooks: itemEditorChoiceBooks.data,
+          bookDetailBooks: bookDetailBooks.data,
         },
       });
     } catch (error) {

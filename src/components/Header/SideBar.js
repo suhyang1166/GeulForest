@@ -1,7 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
 import CLOSE from "../../assets/header/close.svg";
-import STAR from "../../assets/header/star.svg";
+import BookItem from "../../pages/Main/MainBook/component/BookItem";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SlideBarWrap = styled.div`
   position: fixed;
@@ -17,6 +19,9 @@ const SlideBarWrap = styled.div`
   background: #fff;
   overflow-x: hidden;
   z-index: 100;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const UserWrap = styled.article`
@@ -48,12 +53,6 @@ const Icon = styled.div`
   background: url(${(props) => props.icon}) center/cover no-repeat;
   cursor: pointer;
 `;
-const Icon02 = styled.div`
-  width: 20px;
-  height: 20px;
-  background: url(${(props) => props.icon}) center/cover no-repeat;
-  cursor: pointer;
-`;
 
 const Log = styled.div`
   width: 140px;
@@ -78,72 +77,22 @@ const LoginUser = styled.div`
   }
 `;
 
-const AddStar = styled.div`
+const AddBook = styled.div`
   color: #888;
 `;
 
-const AddCategory = styled.ul`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  padding: 0;
-  gap: 10px;
-`;
-
-const AddList = styled.li`
-  width: auto;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  border: 1px solid #888;
-  border-radius: 30px;
-  p {
-    width: auto;
-    height: 30px;
-    line-height: 30px;
-    margin: 0;
-  }
-`;
-const CategoryUl = styled.ul`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  padding-top: 20px;
-  margin-top: 10px;
-  border-top: 1px solid #888888;
-`;
-
-const CategoryWrap = styled.article`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 20px;
-  background: #fff;
-`;
-
 const SideBar = ({ onClose }) => {
-  const categorys = [
-    "도서",
-    "웹툰",
-    "소설",
-    "경제/경영",
-    "자기개발",
-    "시/에세이",
-    "인문/교양",
-    "취미/실용",
-    "매거진",
-    "판타지/무협",
-  ];
+  const bookMark = useSelector((state) => state.bookMark.bookMark);
+  const auth = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     onClose();
+  };
+
+  const goToLogin = () => {
+    onClose();
+    navigate("/mypage");
   };
 
   return (
@@ -154,33 +103,26 @@ const SideBar = ({ onClose }) => {
           <Icon icon={CLOSE} onClick={handleClose} />
         </List>
         <Log>
-          <LoginUser>로그인</LoginUser>
+          {auth.authenciate === true ? (
+            <div>
+              <div>
+                <img />
+                <h3>
+                  <b>{auth.id.split("@", 1)}</b>님
+                </h3>
+              </div>
+              <AddBook>
+                <p>나의 서재</p>
+                {bookMark?.map((item) => (
+                  <BookItem key={item?.itemId} book={item} />
+                ))}
+              </AddBook>
+            </div>
+          ) : (
+            <LoginUser onClick={goToLogin}>로그인</LoginUser>
+          )}
         </Log>
-        <AddStar>
-          <p>카테고리</p>
-          <AddCategory>
-            <AddList>
-              <p>소설</p>
-              <Icon02 icon={CLOSE} onClick={handleClose} />
-            </AddList>
-            <AddList>
-              <p>경제/경영</p>
-              <Icon02 icon={CLOSE} onClick={handleClose} />
-            </AddList>
-          </AddCategory>
-        </AddStar>
       </UserWrap>
-      <CategoryWrap>
-        <Title>분야별 카테고리</Title>
-        <CategoryUl>
-          {categorys.map((category) => (
-            <List>
-              <p>{category}</p>
-              <Icon icon={STAR}></Icon>
-            </List>
-          ))}
-        </CategoryUl>
-      </CategoryWrap>
     </SlideBarWrap>
   );
 };

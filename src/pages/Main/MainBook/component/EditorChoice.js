@@ -91,7 +91,7 @@ const ItemWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   overflow-x: scroll;
   cursor: pointer;
   &::-webkit-scrollbar {
