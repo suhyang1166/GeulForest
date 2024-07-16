@@ -97,7 +97,7 @@ const NewBook = ({ newBook }) => {
           <h3>{newBook?.title.split("-", 1)}</h3>
           <p>{newBook?.author.split(" ", 1)} 저자</p>
         </BookTitle>
-        <Heart bookTitle={newBook} />
+        <Heart book={newBook} />
       </TitleWrap>
     </Container>
   );

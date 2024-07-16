@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MainBtn from "../../../components/Btn/MainBtn";
-import { bookAction } from "../../../redux/actions/bookAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import MainSlider from "./component/MainSlider";
 import EditorChoice from "./component/EditorChoice";
 import NewBooks from "./component/NewBooks";

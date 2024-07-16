@@ -42,7 +42,7 @@ const BestBook = ({ best }) => {
       <BookImg>
         <img src={best?.cover} />
         <div>
-          <Heart bookTitle={best} />
+          <Heart book={best} />
         </div>
       </BookImg>
       <p>{best?.title.split("-", 1)}</p>
