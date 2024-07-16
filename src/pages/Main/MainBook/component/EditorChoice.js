@@ -1,6 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import { styled } from "styled-components";
 import BookItem from "./BookItem";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setActiveMenu } from "../../../../redux/reducers/menuSlice";
+import Heart from "../../../../components/Heart/Heart";
 
 const Container = styled.div`
   width: 100%;
@@ -12,6 +16,7 @@ const Container = styled.div`
   padding: 0 20px;
   margin-top: 33px;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -71,17 +76,18 @@ const RandomTitle = styled.div`
 `;
 
 const RandomImg = styled.div`
-  /* position: relative; */
+  position: relative;
   img {
     width: 100px;
     height: 100%;
     box-shadow: 0 0 3px #d9d9d9;
   }
-  /* span {
+  span {
     position: absolute;
-    top: 5px;
-    right: 5px;
-  } */
+    top: 2px;
+    right: 1px;
+    z-index: 50;
+  }
 `;
 
 const ItemWrap = styled.div`
@@ -105,6 +111,19 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+
+  const authenciate = useSelector((state) => state.auth.authenciate);
+  const navigate = useNavigate();
+
+  const goToBookDetail = () => {
+    if (authenciate === true) {
+      navigate(`/${itemEditorChoiceBooks[randomIdx]?.itemId}`);
+    } else {
+      alert("로그인 후 이용가능합니다.");
+      setActiveMenu("today");
+      navigate("/login");
+    }
+  };
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -157,7 +176,10 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
           {month}월 {day}일 {week}요일 업데이트
         </p>
       </Title>
-      <RandomBook bgImg={itemEditorChoiceBooks[randomIdx]?.cover}>
+      <RandomBook
+        onClick={goToBookDetail}
+        bgImg={itemEditorChoiceBooks[randomIdx]?.cover}
+      >
         <RandomItem>
           <RandomTitle>
             <h3>{itemEditorChoiceBooks[randomIdx]?.title.split(" ", 1)}</h3>
@@ -168,7 +190,9 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
               src={itemEditorChoiceBooks[randomIdx]?.cover}
               alt="randombook"
             />
-            {/* <span>하트</span> */}
+            <span>
+              <Heart book={itemEditorChoiceBooks[randomIdx]} />
+            </span>
           </RandomImg>
         </RandomItem>
       </RandomBook>

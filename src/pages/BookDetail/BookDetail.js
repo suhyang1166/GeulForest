@@ -4,14 +4,21 @@ import { useParams } from "react-router-dom";
 import { bookAction } from "../../redux/actions/bookAction";
 import styled from "styled-components";
 import Loading2 from "../Nodata/Loading2";
+import DetailHeader from "../../components/Header/DetailHeader";
+import BookDetailMain from "./component/BookDetailMain";
+import BookIntroduction from "./component/BookIntroduction";
+import Comment from "./component/Comment";
+import Category from "./component/Category";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 50px;
+  margin: 80px 0;
 `;
 
 const BookDetail = () => {
@@ -23,7 +30,6 @@ const BookDetail = () => {
 
   useEffect(() => {
     dispatch(bookAction.getBooksApi(itemId)).then(() => setLoading(false));
-    console.log("BOOKDETAIL useEffet");
   }, [dispatch, itemId]);
 
   console.log("detailData", data);
@@ -32,14 +38,17 @@ const BookDetail = () => {
     return <Loading2 />;
   }
   return (
-    <Container>
-      {data.item && (
-        <div>
-          <h3>{data?.item[0].title}</h3>
-          <p>{data?.item[0].description}</p>
-        </div>
+    <>
+      <DetailHeader />
+      {data?.item[0] && (
+        <Container>
+          <BookDetailMain book={data?.item[0]} />
+          <Category book={data?.item[0]} />
+          <BookIntroduction book={data?.item[0]} />
+          <Comment />
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 export default BookDetail;

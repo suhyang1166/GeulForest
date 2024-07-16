@@ -1,6 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
 import Heart from "../../../../components/Heart/Heart";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setActiveMenu } from "../../../../redux/reducers/menuSlice";
 
 const Container = styled.div`
   width: 200px;
@@ -85,15 +88,27 @@ const BookTitle = styled.div`
 `;
 
 const NewBook = ({ newBook }) => {
+  const authenciate = useSelector((state) => state.auth.authenciate);
+  const navigate = useNavigate();
+
+  const goToBookDetail = () => {
+    if (authenciate === true) {
+      navigate(`/${newBook.itemId}`);
+    } else {
+      alert("로그인 후 이용가능합니다.");
+      setActiveMenu("today");
+      navigate("/login");
+    }
+  };
   return (
     <Container>
-      <BookWrap bgImg={newBook?.cover}>
+      <BookWrap onClick={goToBookDetail} bgImg={newBook?.cover}>
         <BookImg>
           <img src={newBook?.cover} />
         </BookImg>
       </BookWrap>
       <TitleWrap>
-        <BookTitle>
+        <BookTitle onClick={goToBookDetail}>
           <h3>{newBook?.title.split("-", 1)}</h3>
           <p>{newBook?.author.split(" ", 1)} 저자</p>
         </BookTitle>

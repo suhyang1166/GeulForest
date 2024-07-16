@@ -7,6 +7,9 @@ import { setActiveMenu } from "../../../../redux/reducers/menuSlice";
 
 const BookWrap = styled.div`
   height: 100%;
+  p {
+    cursor: pointer;
+  }
   p:nth-of-type(1) {
     font-weight: bold;
     font-size: 12px;
@@ -31,6 +34,7 @@ const BookImg = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
   div {
     position: absolute;

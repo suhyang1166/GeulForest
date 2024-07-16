@@ -1,5 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import { setActiveMenu } from "../../../../redux/reducers/menuSlice";
 
 const MainBg = styled.div`
   position: relative;
@@ -27,6 +30,7 @@ const MainBook = styled.div`
   background: url(${(props) => props.bestseller?.cover}) center / cover
     no-repeat;
   z-index: 3;
+  cursor: pointer;
 `;
 
 const Title = styled.p`
@@ -39,6 +43,7 @@ const Title = styled.p`
   font-size: 20px;
   z-index: 10;
   word-break: keep-all;
+  cursor: pointer;
 `;
 
 const RankAndAuthor = styled.div`
@@ -50,40 +55,32 @@ const RankAndAuthor = styled.div`
   font-size: 12px;
   letter-spacing: -0.3px;
   z-index: 10;
+  cursor: pointer;
 `;
-
-const SlideBox = styled.div`
-  width: 100%;
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(transparent, #000);
-    z-index: 7;
-  }
-`;
-
-const Line = styled.span``;
-const Num = styled.span``;
-const Btn = styled.button``;
 
 const MainSlider = ({ bestseller }) => {
+  const authenciate = useSelector((state) => state.auth.authenciate);
+  const navigate = useNavigate();
+
+  const goToBookDetail = () => {
+    if (authenciate === true) {
+      navigate(`/${bestseller.itemId}`);
+    } else {
+      alert("로그인 후 이용가능합니다.");
+      setActiveMenu("today");
+      navigate("/login");
+    }
+  };
   return (
     <MainBg bestseller={bestseller}>
-      <MainBook bestseller={bestseller} />
-      <Title>"{bestseller?.title.split("-", 1)}"</Title>
-      <RankAndAuthor>
+      <MainBook onClick={goToBookDetail} bestseller={bestseller} />
+      <Title onClick={goToBookDetail}>
+        "{bestseller?.title.split("-", 1)}"
+      </Title>
+      <RankAndAuthor onClick={goToBookDetail}>
         베스트 셀러 : {bestseller?.bestRank}위,{" "}
         {bestseller?.author.split("(", 1)} 저자(글)
       </RankAndAuthor>
-      <SlideBox>
-        <Line></Line>
-        <Num></Num>
-        <Btn></Btn>
-      </SlideBox>
     </MainBg>
   );
 };
