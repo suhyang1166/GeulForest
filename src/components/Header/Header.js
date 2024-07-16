@@ -16,7 +16,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  z-index: 1000;
+  z-index: 100;
   transition: all 0.3s ease-in-out;
 `;
 
@@ -29,7 +29,7 @@ const Bg = styled.div`
   max-width: 500px;
   height: 50px;
   background: rgba(0, 0, 0, ${(props) => (props.showNav ? "0.3" : "0")});
-  z-index: 1000;
+  z-index: 100;
   transition: all 0.3s ease-in-out;
 `;
 

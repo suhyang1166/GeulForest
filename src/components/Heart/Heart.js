@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { setActiveMenu } from "../../redux/reducers/menuSlice";
 
 const AddHeart = styled.span`
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   color: ${(props) => (props.changeIcon ? "red" : "lightgray")};
   text-shadow: 0 0 10px red;
   z-index: 10;
@@ -26,7 +26,6 @@ const Heart = ({ book }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const isBookMarked = bookMark.includes(bookTitle);
   const isBookMarked = bookMark.some(
     (markedBook) => markedBook.itemId === book.itemId
   );
@@ -34,7 +33,6 @@ const Heart = ({ book }) => {
 
   useEffect(() => {
     setChangeIcon(isBookMarked);
-    console.log("HEART useEffect - isBookMarked updated:", isBookMarked);
   }, [isBookMarked, bookMark]);
 
   const toggleBookMark = () => {

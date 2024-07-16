@@ -14,6 +14,7 @@ const Container = styled.div`
   align-items: center;
   z-index: 9999;
   position: relative;
+  background: #fff;
 `;
 
 const Load = styled.div`

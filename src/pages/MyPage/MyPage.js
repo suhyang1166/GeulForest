@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import BookItem from "../Main/MainBook/component/BookItem";
+import MyProfile from "./component/MyProfile";
+import AddBooks from "./component/AddBooks";
 
 const Container = styled.div`
   width: 100%;
@@ -11,43 +13,28 @@ const Container = styled.div`
   justify-content: start;
   align-items: center;
   gap: 30px;
-  margin-top: 80px;
+  margin: 80px 0;
+  padding: 0 20px;
+  position: relative;
 `;
 
-const AddBook = styled.div`
+const Bg = styled.div`
+  position: absolute;
+  top: -80px;
+  left: 0;
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-`;
-
-const BookMark = styled.div`
-  width: 120px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: start;
-  align-items: center;
-  gap: 15px;
+  height: 490px;
+  background: linear-gradient(#42d76b, transparent);
+  opacity: 0.5;
+  z-index: -1;
 `;
 
 const MyPage = () => {
-  const bookMark = useSelector((state) => state.bookMark.bookMark);
-  const authId = useSelector((state) => state.auth.id);
   return (
     <Container>
-      <h3>
-        <b>{authId.split("@", 1)}</b>님의 서재
-      </h3>
-      <AddBook>
-        <p>나의 서재</p>
-        <BookMark>
-          {bookMark?.map((item) => (
-            <BookItem key={item?.itemId} book={item} />
-          ))}
-        </BookMark>
-      </AddBook>
+      <Bg />
+      <MyProfile />
+      <AddBooks />
     </Container>
   );
 };

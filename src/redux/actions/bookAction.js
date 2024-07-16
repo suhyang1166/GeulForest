@@ -17,7 +17,7 @@ const getBooksApi = (itemId) => {
         `/api/ItemList.aspx?QueryType=ItemEditorChoice&MaxResults=30&start=1&CategoryId=1`
       );
       const bookDetailApi = bookApi.get(
-        `/api/ItemLookUp.aspx?itemIdType=itemId&ItemId=${itemId}&OptResult=ebookList,usedList,reviewList,ratingInfo`
+        `/api/ItemLookUp.aspx?itemIdType=itemId&ItemId=${itemId}&OptResult=usedList,cardReviewImgList,reviewList,ratingInfo,bestSellerRank`
       );
 
       let [
@@ -31,7 +31,6 @@ const getBooksApi = (itemId) => {
         itemEditorChoiceApi,
         bookDetailApi,
       ]);
-      console.log("DETAIL", bookDetailBooks);
 
       dispatch({
         type: "GET_BOOK_SUCCESS",
