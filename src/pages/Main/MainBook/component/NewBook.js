@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import Heart from "../../../../components/Heart/Heart";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setActiveMenu } from "../../../../redux/reducers/menuSlice";
 
 const Container = styled.div`
   width: 200px;
@@ -10,8 +11,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-  gap: 5px;
+  align-items: center;
+  gap: 10px;
 `;
 
 const BookWrap = styled.div`
@@ -65,23 +66,16 @@ const BookImg = styled.div`
   }
 `;
 
-const Text = styled.div`
+const TitleWrap = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: start;
-  span {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    color: ${(props) => (props.changeIcon ? "red" : "white")};
-    text-shadow: 0 0 10px red;
-    cursor: pointer;
-  }
 `;
 
 const BookTitle = styled.div`
+  width: 100%;
+  word-break: keep-all;
   h3 {
     font-size: 16px;
     font-weight: bold;
@@ -94,30 +88,32 @@ const BookTitle = styled.div`
 `;
 
 const NewBook = ({ newBook }) => {
-  const [changeIcon, setChangeIcon] = useState(false);
+  const authenciate = useSelector((state) => state.auth.authenciate);
+  const navigate = useNavigate();
 
-  const addBook = () => {
-    setChangeIcon((prev) => !prev);
+  const goToBookDetail = () => {
+    if (authenciate === true) {
+      navigate(`/${newBook.itemId}`);
+    } else {
+      alert("로그인 후 이용가능합니다.");
+      setActiveMenu("today");
+      navigate("/login");
+    }
   };
   return (
     <Container>
-      <BookWrap bgImg={newBook?.cover}>
+      <BookWrap onClick={goToBookDetail} bgImg={newBook?.cover}>
         <BookImg>
           <img src={newBook?.cover} />
         </BookImg>
       </BookWrap>
-      <Text>
-        <BookTitle>
+      <TitleWrap>
+        <BookTitle onClick={goToBookDetail}>
           <h3>{newBook?.title.split("-", 1)}</h3>
           <p>{newBook?.author.split(" ", 1)} 저자</p>
         </BookTitle>
-        <span onClick={addBook}>
-          <FontAwesomeIcon
-            icon={changeIcon ? solidHeart : regularHeart}
-            color={changeIcon ? "red" : "white"}
-          />
-        </span>
-      </Text>
+        <Heart book={newBook} />
+      </TitleWrap>
     </Container>
   );
 };

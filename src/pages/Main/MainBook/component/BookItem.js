@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import Heart from "../../../../components/Heart/Heart";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { setActiveMenu } from "../../../../redux/reducers/menuSlice";
 
 const BookWrap = styled.div`
   height: 100%;
+  p {
+    cursor: pointer;
+  }
   p:nth-of-type(1) {
     font-weight: bold;
     font-size: 12px;
@@ -30,39 +34,41 @@ const BookImg = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
-  span {
-    width: 15px;
-    height: 15px;
+  div {
     position: absolute;
     top: 5px;
     right: 5px;
-    color: ${(props) => (props.changeIcon ? "red" : "white")};
-    text-shadow: 0 0 10px red;
-    cursor: pointer;
+    z-index: 100;
   }
 `;
 
 const BookItem = ({ book }) => {
-  const [changeIcon, setChangeIcon] = useState(false);
+  const authenciate = useSelector((state) => state.auth.authenciate);
+  const navigate = useNavigate();
 
-  const addBook = () => {
-    setChangeIcon((prev) => !prev);
+  const goToBookDetail = () => {
+    if (authenciate === true) {
+      navigate(`/${book.itemId}`);
+    } else {
+      alert("로그인 후 이용가능합니다.");
+      setActiveMenu("today");
+      navigate("/login");
+    }
   };
-
   return (
     <BookWrap>
       <BookImg>
-        <img src={book?.cover} />
-        <span onClick={addBook}>
-          <FontAwesomeIcon
-            icon={changeIcon ? solidHeart : regularHeart}
-            color={changeIcon ? "red" : "white"}
-          />
-        </span>
+        <img onClick={goToBookDetail} src={book?.cover} />
+        <div>
+          <Heart book={book} />
+        </div>
       </BookImg>
-      <p>{book?.title.split("-", 1)}</p>
-      <p>{book?.author.split(" ", 1)} 저자</p>
+      <div onClick={goToBookDetail}>
+        <p>{book?.title.split("-", 1)}</p>
+        <p>{book?.author.split(" ", 1)} 저자</p>
+      </div>
     </BookWrap>
   );
 };
