@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { authenciateAction } from "../../redux/actions/authenciateAction";
+import { setActiveMenu } from "../../redux/reducers/menuSlice";
 
 const Container = styled.div`
   width: 100%;
@@ -75,6 +79,7 @@ const LoginBtn = styled.button`
   background: #42d76b;
   font-size: 16px;
   border: 1px solid #42d76b;
+  margin-top: 30px;
   transition: all 0.2s;
   &:hover {
     border: 1px solid #42d76b;
@@ -84,19 +89,37 @@ const LoginBtn = styled.button`
 `;
 
 const Login = () => {
+  const authenciate = useSelector((state) => state.auth);
+  const [id, setId] = useState();
+  const [password, setPassword] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const loginUser = (e) => {
+    e.preventDefault();
+    dispatch(authenciateAction.login(id, password));
+    navigate("/");
+    setActiveMenu("today");
+  };
   return (
     <Container>
       <Wrap>
         <h1>로그인</h1>
-        <Form method="post" action="">
-          <Email type="email" placeholder="아이디" autocomplete="userEmail" />
+        <Form method="post" onSubmit={loginUser}>
+          <Email
+            type="email"
+            placeholder="아이디"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
           <PassWord
             type="password"
             placeholder="비밀번호"
-            autocomplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
+          <LoginBtn>로그인</LoginBtn>
         </Form>
-        <LoginBtn>로그인</LoginBtn>
       </Wrap>
     </Container>
   );

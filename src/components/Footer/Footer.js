@@ -9,21 +9,26 @@ import menuSearch from "../../assets/images/Search Property.png";
 import menuSearchCheck from "../../assets/images/Search Property-1.png";
 import menuUser from "../../assets/images/Male User.png";
 import menuUserCheck from "../../assets/images/Male User-1.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveMenu } from "../../redux/reducers/menuSlice";
 
 const Footer = () => {
+  const authenciate = useSelector((state) => state.auth.authenciate);
+  const activeMenu = useSelector((state) => state.menu.activeMenu);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [activeMenu, setActiveMenu] = useState("today");
+  const handleMenuClick = (menu, path) => {
+    dispatch(setActiveMenu(menu));
+    navigate(path);
+  };
 
   return (
     <Container>
       <MenuContainer>
         <MenuToday
-          onClick={() => {
-            navigate("/");
-            setActiveMenu("today");
-          }}
           active={activeMenu === "today"}
+          onClick={() => handleMenuClick("today", "/")}
         >
           <Span>투데이</Span>
         </MenuToday>
@@ -31,10 +36,7 @@ const Footer = () => {
 
       <MenuContainer>
         <MenuFeed
-          onClick={() => {
-            navigate("/feed");
-            setActiveMenu("feed");
-          }}
+          onClick={() => handleMenuClick("feed", "/feed")}
           active={activeMenu === "feed"}
         >
           <Span>피드</Span>
@@ -43,10 +45,7 @@ const Footer = () => {
 
       <MenuContainer>
         <MenuSearch
-          onClick={() => {
-            navigate("/search");
-            setActiveMenu("search");
-          }}
+          onClick={() => handleMenuClick("search", "/search")}
           active={activeMenu === "search"}
         >
           <Span>검색</Span>
@@ -55,13 +54,10 @@ const Footer = () => {
 
       <MenuContainer>
         <MenuUser
-          onClick={() => {
-            navigate("/mypage");
-            setActiveMenu("mypage");
-          }}
+          onClick={() => handleMenuClick("mypage", "/mypage")}
           active={activeMenu === "mypage"}
         >
-          <Span>내서재</Span>
+          {authenciate === true ? <Span>내서재</Span> : <Span>로그인</Span>}
         </MenuUser>
       </MenuContainer>
     </Container>

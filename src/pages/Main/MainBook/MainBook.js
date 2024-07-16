@@ -12,13 +12,8 @@ import "swiper/swiper-bundle.css";
 import "./component/swiper.css";
 
 const MainBook = () => {
-  const dispatch = useDispatch();
   const { bestsellerBooks, itemNewSpecialBooks, itemEditorChoiceBooks } =
     useSelector((state) => state.book);
-
-  useEffect(() => {
-    dispatch(bookAction.getBooksApi());
-  }, [dispatch]);
 
   return (
     <div>

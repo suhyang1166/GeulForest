@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import CLOSE from "../../assets/header/close.svg";
 import BookItem from "../../pages/Main/MainBook/component/BookItem";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SlideBarWrap = styled.div`
   position: fixed;
@@ -18,6 +19,9 @@ const SlideBarWrap = styled.div`
   background: #fff;
   overflow-x: hidden;
   z-index: 100;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const UserWrap = styled.article`
@@ -73,15 +77,22 @@ const LoginUser = styled.div`
   }
 `;
 
-const AddStar = styled.div`
+const AddBook = styled.div`
   color: #888;
 `;
 
 const SideBar = ({ onClose }) => {
   const bookMark = useSelector((state) => state.bookMark.bookMark);
+  const auth = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     onClose();
+  };
+
+  const goToLogin = () => {
+    onClose();
+    navigate("/mypage");
   };
 
   return (
@@ -92,15 +103,25 @@ const SideBar = ({ onClose }) => {
           <Icon icon={CLOSE} onClick={handleClose} />
         </List>
         <Log>
-          <LoginUser>로그인</LoginUser>
+          {auth.authenciate === true ? (
+            <div>
+              <div>
+                <img />
+                <h3>
+                  <b>{auth.id.split("@", 1)}</b>님
+                </h3>
+              </div>
+              <AddBook>
+                <p>나의 서재</p>
+                {bookMark?.map((item) => (
+                  <BookItem key={item?.itemId} book={item} />
+                ))}
+              </AddBook>
+            </div>
+          ) : (
+            <LoginUser onClick={goToLogin}>로그인</LoginUser>
+          )}
         </Log>
-        <AddStar>
-          <p>즐겨찾기</p>
-          {bookMark.map((item, idx) => (
-            <BookItem key={idx} book={item} />
-          ))}
-          {/* <BookItem book={bookMark} /> */}
-        </AddStar>
       </UserWrap>
     </SlideBarWrap>
   );

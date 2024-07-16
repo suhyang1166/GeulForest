@@ -12,7 +12,9 @@ const bookMarkSlice = createSlice({
       state.bookMark.push(action.payload);
     },
     removeBookMark: (state, action) => {
-      state.bookMark = state.bookMark.filter((book) => book !== action.payload);
+      state.bookMark = state.bookMark.filter(
+        (book) => book.itemId !== action.payload.itemId
+      );
     },
   },
 });

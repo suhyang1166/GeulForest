@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import Heart from "../../../../components/Heart/Heart";
 
 const BookWrap = styled.div`
   height: 100%;
@@ -7,10 +8,12 @@ const BookWrap = styled.div`
     font-weight: bold;
     font-size: 12px;
     margin: 0;
+    margin-top: 8px;
   }
   p:nth-of-type(2) {
     font-size: 10px;
     margin: 0;
+    line-height: 10px;
   }
 `;
 
@@ -18,6 +21,7 @@ const BookImg = styled.div`
   width: 120px;
   height: 180px;
   position: relative;
+  box-shadow: 0 0 2px #d9d9d9;
   img {
     position: absolute;
     top: 0;
@@ -25,10 +29,10 @@ const BookImg = styled.div`
     width: 100%;
     height: 100%;
   }
-  span {
+  div {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
   }
 `;
 
@@ -37,6 +41,9 @@ const BestBook = ({ best }) => {
     <BookWrap>
       <BookImg>
         <img src={best?.cover} />
+        <div>
+          <Heart bookTitle={best} />
+        </div>
       </BookImg>
       <p>{best?.title.split("-", 1)}</p>
       <p>{best?.author.split(" ", 1)} 저자</p>

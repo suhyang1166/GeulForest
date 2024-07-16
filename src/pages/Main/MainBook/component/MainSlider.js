@@ -38,6 +38,7 @@ const Title = styled.p`
   font-weight: bold;
   font-size: 20px;
   z-index: 10;
+  word-break: keep-all;
 `;
 
 const RankAndAuthor = styled.div`

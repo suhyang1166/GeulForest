@@ -1,9 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
 import Heart from "../../../../components/Heart/Heart";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { setActiveMenu } from "../../../../redux/reducers/menuSlice";
 
 const BookWrap = styled.div`
   height: 100%;
@@ -32,41 +29,30 @@ const BookImg = styled.div`
     width: 100%;
     height: 100%;
   }
-  div {
+  span {
+    width: 15px;
+    height: 15px;
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: 100;
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
   }
 `;
 
-const BookItem = ({ book }) => {
-  const authenciate = useSelector((state) => state.auth.authenciate);
-  const navigate = useNavigate();
-
-  const goToBookDetail = () => {
-    if (authenciate === true) {
-      navigate(`/${book.itemId}`);
-    } else {
-      alert("로그인 후 이용가능합니다.");
-      setActiveMenu("today");
-      navigate("/login");
-    }
-  };
+const BookMark = ({ book }) => {
   return (
     <BookWrap>
       <BookImg>
-        <img onClick={goToBookDetail} src={book?.cover} />
+        <img src={book?.cover} />
         <div>
           <Heart bookTitle={book} />
         </div>
       </BookImg>
-      <div onClick={goToBookDetail}>
-        <p>{book?.title.split("-", 1)}</p>
-        <p>{book?.author.split(" ", 1)} 저자</p>
-      </div>
+      <p>{book?.title.split("-", 1)}</p>
+      <p>{book?.author.split(" ", 1)} 저자</p>
     </BookWrap>
   );
 };
 
-export default BookItem;
+export default BookMark;

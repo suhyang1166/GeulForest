@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 import Heart from "../../../../components/Heart/Heart";
 
@@ -97,7 +97,7 @@ const NewBook = ({ newBook }) => {
           <h3>{newBook?.title.split("-", 1)}</h3>
           <p>{newBook?.author.split(" ", 1)} 저자</p>
         </BookTitle>
-        <Heart />
+        <Heart bookTitle={newBook} />
       </TitleWrap>
     </Container>
   );
