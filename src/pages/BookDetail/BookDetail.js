@@ -17,11 +17,13 @@ const Container = styled.div`
 const BookDetail = () => {
   const { itemId } = useParams();
   const data = useSelector((state) => state.book.bookDetailBooks);
+
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(bookAction.getBooksApi(itemId)).then(() => setLoading(false));
+    console.log("BOOKDETAIL useEffet");
   }, [dispatch, itemId]);
 
   console.log("detailData", data);

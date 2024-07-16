@@ -20,28 +20,33 @@ const AddHeart = styled.span`
   cursor: pointer;
 `;
 
-const Heart = ({ bookTitle }) => {
+const Heart = ({ book }) => {
   let bookMark = useSelector((state) => state.bookMark.bookMark);
   const authenciate = useSelector((state) => state.auth.authenciate);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isBookMarked = bookMark.includes(bookTitle);
+  // const isBookMarked = bookMark.includes(bookTitle);
+  const isBookMarked = bookMark.some(
+    (markedBook) => markedBook.itemId === book.itemId
+  );
   const [changeIcon, setChangeIcon] = useState(isBookMarked);
 
   useEffect(() => {
     setChangeIcon(isBookMarked);
+    console.log("HEART useEffect - isBookMarked updated:", isBookMarked);
   }, [isBookMarked, bookMark]);
 
   const toggleBookMark = () => {
     if (changeIcon) {
-      dispatch(removeBookMark(bookTitle));
+      dispatch(removeBookMark(book));
     } else {
-      dispatch(addBookMark(bookTitle));
+      dispatch(addBookMark(book));
     }
 
     setChangeIcon(!changeIcon);
   };
+  // console.log("BOOKMARK", bookMark);
 
   return (
     <AddHeart

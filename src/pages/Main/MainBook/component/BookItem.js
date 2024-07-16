@@ -58,7 +58,7 @@ const BookItem = ({ book }) => {
       <BookImg>
         <img onClick={goToBookDetail} src={book?.cover} />
         <div>
-          <Heart bookTitle={book} />
+          <Heart book={book} />
         </div>
       </BookImg>
       <div onClick={goToBookDetail}>
