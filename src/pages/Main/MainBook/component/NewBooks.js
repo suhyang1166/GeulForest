@@ -35,22 +35,12 @@ const ItemWrap = styled.div`
   gap: 15px;
   margin-bottom: 50px;
   overflow-x: scroll;
-  cursor: pointer;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
 const NewBooks = ({ itemNewSpecialBooks }) => {
-  // console.log("ttt", itemNewSpecialBooks);
-
-  const categorys = itemNewSpecialBooks.map((category) => {
-    // console.log("ccc", category.categoryName);
-    return category.categoryName.split(">", 2)[1];
-  });
-
-  // console.log(categorys);
-
   return (
     <Container>
       <Title>
