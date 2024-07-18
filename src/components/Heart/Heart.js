@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { setActiveMenu } from "../../redux/reducers/menuSlice";
 
 const AddHeart = styled.span`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   color: ${(props) => (props.changeIcon ? "red" : "lightgray")};
   text-shadow: 0 0 10px red;
   z-index: 10;

@@ -4,6 +4,7 @@ import bookReducer from "./bookReducer";
 import bookMarkSlice from "./bookMarkSlice";
 import authenciateReducer from "./authenciateReducer";
 import menuSlice from "./menuSlice";
+import userImgSlice from "./userImgSlice";
 
 export default combineReducers({
   book: bookReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   bookMark: bookMarkSlice,
   auth: authenciateReducer,
   menu: menuSlice,
+  user: userImgSlice,
 });

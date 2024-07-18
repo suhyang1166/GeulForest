@@ -6,7 +6,7 @@ import spinnerGreen from "../../assets/lottie/spinner-green.json";
 
 const Container = styled.div`
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   background: transparent;
   display: flex;
   flex-direction: column;

@@ -24,8 +24,8 @@ const BookWrap = styled.div`
 `;
 
 const BookImg = styled.div`
-  width: 120px;
-  height: 180px;
+  width: 110px;
+  height: 160px;
   position: relative;
   box-shadow: 0 0 2px #d9d9d9;
   img {
@@ -40,7 +40,7 @@ const BookImg = styled.div`
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: 100;
+    z-index: 50;
   }
 `;
 
