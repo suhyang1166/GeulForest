@@ -8,17 +8,34 @@ const AddBook = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: start;
+  gap: 20px;
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+`;
+
+const Wrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-size: 18px;
+    color: #888;
+    margin-bottom: 0;
+  }
 `;
 
 const BookMark = styled.div`
-  width: 120px;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  justify-content: start;
-  align-items: center;
-  gap: 15px;
+  justify-content: center;
+  align-content: space-between;
+  gap: 10px;
 `;
 
 const AddBooks = () => {
@@ -26,12 +43,20 @@ const AddBooks = () => {
 
   return (
     <AddBook>
-      <p>나의 서재</p>
-      <BookMark>
-        {bookMark?.map((item) => (
-          <BookItem key={item?.itemId} book={item} />
-        ))}
-      </BookMark>
+      <h3>나의 서재</h3>
+      <Wrap>
+        <p>전체 {bookMark.length}권</p>
+        <span>최근 담은순</span>
+      </Wrap>
+      {bookMark?.length > 0 ? (
+        <BookMark>
+          {bookMark?.map((item) => (
+            <BookItem key={item?.itemId} book={item} />
+          ))}
+        </BookMark>
+      ) : (
+        <p>맘에 드는 책을 담아주세요!</p>
+      )}
     </AddBook>
   );
 };

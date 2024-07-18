@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import menuToday from "../../assets/images/Checkmark.png";
@@ -15,6 +15,7 @@ import { setActiveMenu } from "../../redux/reducers/menuSlice";
 const Footer = () => {
   const authenciate = useSelector((state) => state.auth.authenciate);
   const activeMenu = useSelector((state) => state.menu.activeMenu);
+  const previewImg = useSelector((state) => state.user.previewImg);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,36 +30,45 @@ const Footer = () => {
         <MenuToday
           active={activeMenu === "today"}
           onClick={() => handleMenuClick("today", "/")}
-        >
-          <Span>투데이</Span>
-        </MenuToday>
+        ></MenuToday>
+        <Span>투데이</Span>
       </MenuContainer>
 
       <MenuContainer>
         <MenuFeed
           onClick={() => handleMenuClick("feed", "/feed")}
           active={activeMenu === "feed"}
-        >
-          <Span>피드</Span>
-        </MenuFeed>
+        ></MenuFeed>
+        <Span>피드</Span>
       </MenuContainer>
 
       <MenuContainer>
         <MenuSearch
           onClick={() => handleMenuClick("search", "/search")}
           active={activeMenu === "search"}
-        >
-          <Span>검색</Span>
-        </MenuSearch>
+        ></MenuSearch>
+        <Span>검색</Span>
       </MenuContainer>
 
       <MenuContainer>
-        <MenuUser
-          onClick={() => handleMenuClick("mypage", "/mypage")}
-          active={activeMenu === "mypage"}
-        >
-          {authenciate === true ? <Span>내서재</Span> : <Span>로그인</Span>}
-        </MenuUser>
+        {authenciate === true ? (
+          <>
+            <UserImg
+              onClick={() => handleMenuClick("mypage", "/mypage")}
+              active={activeMenu === "mypage"}
+              previewImg={previewImg}
+            />
+            <Span active={activeMenu === "mypage"}>내서재</Span>
+          </>
+        ) : (
+          <>
+            <MenuUser
+              onClick={() => handleMenuClick("mypage", "/mypage")}
+              active={activeMenu === "mypage"}
+            />
+            <Span>로그인</Span>
+          </>
+        )}
       </MenuContainer>
     </Container>
   );
@@ -75,19 +85,28 @@ const Container = styled.div`
   background: #eee;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   z-index: 100;
 `;
 const MenuContainer = styled.div`
   width: 100%;
   height: 60px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 const Span = styled.span`
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%); */
+  width: 100%;
+  text-align: center;
   font-size: 12px;
+  font-weight: ${({ active }) => (active ? "bold" : "none")};
+  color: ${({ active }) => (active ? "#42D76B" : "#000")};
 `;
 
 const MenuToday = styled.div`
@@ -117,6 +136,21 @@ const MenuSearch = styled.div`
       ? `url(${menuSearchCheck}) center no-repeat`
       : `url(${menuSearch}) center no-repeat`};
 `;
+
+const UserImg = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  margin-top: 4px;
+  background: ${({ active, previewImg }) =>
+    previewImg !== ""
+      ? `url(${previewImg}) center/cover no-repeat`
+      : active
+      ? `url(${menuUserCheck}) center no-repeat`
+      : `url(${menuUser}) center no-repeat`};
+  cursor: pointer;
+`;
+
 const MenuUser = styled.div`
   width: 100%;
   height: 50px;

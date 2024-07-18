@@ -54,6 +54,12 @@ const RandomBook = styled.div`
     opacity: 0.2;
     z-index: -1;
   }
+  span {
+    position: absolute;
+    top: 14%;
+    right: 5px;
+    z-index: 50;
+  }
 `;
 
 const RandomItem = styled.div`
@@ -76,17 +82,10 @@ const RandomTitle = styled.div`
 `;
 
 const RandomImg = styled.div`
-  position: relative;
   img {
     width: 100px;
     height: 100%;
     box-shadow: 0 0 3px #d9d9d9;
-  }
-  span {
-    position: absolute;
-    top: 2px;
-    right: 1px;
-    z-index: 50;
   }
 `;
 
@@ -176,11 +175,8 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
           {month}월 {day}일 {week}요일 업데이트
         </p>
       </Title>
-      <RandomBook
-        onClick={goToBookDetail}
-        bgImg={itemEditorChoiceBooks[randomIdx]?.cover}
-      >
-        <RandomItem>
+      <RandomBook bgImg={itemEditorChoiceBooks[randomIdx]?.cover}>
+        <RandomItem onClick={goToBookDetail}>
           <RandomTitle>
             <h3>{itemEditorChoiceBooks[randomIdx]?.title.split(" ", 1)}</h3>
             <p>{itemEditorChoiceBooks[randomIdx]?.author.split(" ", 1)} 저자</p>
@@ -190,11 +186,11 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
               src={itemEditorChoiceBooks[randomIdx]?.cover}
               alt="randombook"
             />
-            <span>
-              <Heart book={itemEditorChoiceBooks[randomIdx]} />
-            </span>
           </RandomImg>
         </RandomItem>
+        <span>
+          <Heart book={itemEditorChoiceBooks[randomIdx]} />
+        </span>
       </RandomBook>
       <ItemWrap onMouseDown={onDragStart} ref={scrollRef}>
         {itemEditorChoiceBooks.map((book, idx) => (

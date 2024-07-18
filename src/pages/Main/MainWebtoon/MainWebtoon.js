@@ -3,6 +3,16 @@ import MainBtn from "../../../components/Btn/MainBtn";
 import { webtoonAction } from "../../../redux/actions/webtoonAction";
 import { useDispatch, useSelector } from "react-redux";
 import MainSlider from "./component/MainSlider";
+import styled from "styled-components";
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: lightgray;
+`;
 
 const MainWebtoon = () => {
   const dispatch = useDispatch();
@@ -26,12 +36,13 @@ const MainWebtoon = () => {
   // }, [pouplarWebtoons]);
 
   return (
-    <div>
+    <Container>
       <MainBtn />
-      {pouplarWebtoons.webtoons && (
+      {/* {pouplarWebtoons.webtoons && (
         <MainSlider webtoons={pouplarWebtoons?.webtoons[0]} />
-      )}
-    </div>
+      )} */}
+      <h3>준비 중 입니다.</h3>
+    </Container>
     // <div>
     //   <MainBtn />
     //   {topWebtoon && (
