@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authenciateAction } from "../../redux/actions/authenciateAction";
@@ -89,17 +89,16 @@ const LoginBtn = styled.button`
 `;
 
 const Login = () => {
-  const authenciate = useSelector((state) => state.auth);
-  const [id, setId] = useState();
-  const [password, setPassword] = useState();
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const loginUser = (e) => {
     e.preventDefault();
     dispatch(authenciateAction.login(id, password));
+    dispatch(setActiveMenu("today"));
     navigate("/");
-    setActiveMenu("today");
   };
   return (
     <Container>
@@ -111,12 +110,14 @@ const Login = () => {
             placeholder="아이디"
             value={id}
             onChange={(e) => setId(e.target.value)}
+            required
           />
           <PassWord
             type="password"
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <LoginBtn>로그인</LoginBtn>
         </Form>

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import LOGO from "../../assets/header/logo.svg";
 import MENU from "../../assets/header/menu.svg";
+import MENUBK from "../../assets/header/menu-bk.svg";
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SideBar from "./SideBar";
+import { useDispatch } from "react-redux";
+import { setActiveMenu } from "../../redux/reducers/menuSlice";
 
 const Container = styled.div`
   position: fixed;
@@ -43,7 +46,8 @@ const Logo = styled.div`
 const Toggle = styled.div`
   width: 35px;
   height: 35px;
-  background: url(${MENU}) center/cover no-repeat;
+  background: url(${(props) => (props.isMenuIconBk ? MENUBK : MENU)})
+    center/cover no-repeat;
   z-index: 150;
   cursor: pointer;
 `;
@@ -53,6 +57,9 @@ const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const isToggleOpen = () => {
     setToggle(!isToggle);
@@ -64,6 +71,11 @@ const Header = () => {
 
   const updateScroll = () => {
     setScrollPosition(window.scrollY);
+  };
+
+  const goToMain = () => {
+    dispatch(setActiveMenu("today"));
+    navigate("/");
   };
 
   useEffect(() => {
@@ -87,6 +99,10 @@ const Header = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  const isMenuIconBk =
+    location.pathname.includes("feed") || location.pathname.includes("search");
+
   return (
     <>
       {isToggle ? (
@@ -95,10 +111,8 @@ const Header = () => {
         <>
           {scrollPosition > 490 ? <Bg showNav={showNav} /> : null}
           <Container showNav={showNav}>
-            <Link to="/">
-              <Logo />
-            </Link>
-            <Toggle onClick={isToggleOpen} />
+            <Logo onClick={goToMain} />
+            <Toggle isMenuIconBk={isMenuIconBk} onClick={isToggleOpen} />
           </Container>
         </>
       )}

@@ -3,6 +3,7 @@ const initialState = {
   itemNewSpecialBooks: {},
   itemEditorChoiceBooks: {},
   bookDetailBooks: {},
+  bookSearchBooks: {},
 };
 
 const bookReducer = (state = initialState, action) => {
@@ -15,6 +16,7 @@ const bookReducer = (state = initialState, action) => {
         itemNewSpecialBooks: payload.itemNewSpecialBooks,
         itemEditorChoiceBooks: payload.itemEditorChoiceBooks,
         bookDetailBooks: payload.bookDetailBooks,
+        bookSearchBooks: payload.bookSearchBooks,
       };
     default:
       return state;

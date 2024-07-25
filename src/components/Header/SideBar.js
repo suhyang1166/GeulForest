@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "styled-components";
 import CLOSE from "../../assets/header/close.svg";
 import { useSelector } from "react-redux";
@@ -142,6 +142,14 @@ const SideBar = ({ onClose }) => {
     onClose();
     navigate("/mypage");
   };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   return (
     <SlideBarWrap>
