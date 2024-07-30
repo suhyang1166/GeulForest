@@ -6,20 +6,23 @@ import { useSelector } from "react-redux";
 import { setActiveMenu } from "../../../../redux/reducers/menuSlice";
 
 const BookWrap = styled.div`
+  width: 110px;
   height: 100%;
   p {
     cursor: pointer;
+    word-break: keep-all;
   }
   p:nth-of-type(1) {
     font-weight: bold;
     font-size: 12px;
     margin: 0;
     margin-top: 8px;
+    line-height: 14px;
   }
   p:nth-of-type(2) {
     font-size: 10px;
     margin: 0;
-    line-height: 10px;
+    line-height: 18px;
   }
 `;
 

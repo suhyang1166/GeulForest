@@ -15,9 +15,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: start;
+  align-items: center;
   gap: 20px;
   margin-bottom: 100px;
+  padding: 0 20px;
 `;
 
 const Wrap = styled.div`
@@ -57,7 +58,7 @@ const SearchDetail = () => {
 
   useEffect(() => {
     const fetchBooks = async (page) => {
-      const startIndex = page * ITEMS_PER_PAGE;
+      const startIndex = page * ITEMS_PER_PAGE + 1;
       const translatedKeyword = translateToKorean(keyword);
       await dispatch(
         bookAction.getBooksApi(null, translatedKeyword, startIndex)
@@ -84,7 +85,8 @@ const SearchDetail = () => {
   };
 
   // 페이지에 맞는 데이터 필터링
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+  // 콘솔로 찍어보기 부터 다시하기
   const paginatedBooks = searchResults?.item?.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE
@@ -119,7 +121,7 @@ const SearchDetail = () => {
           count={Math.ceil(totalResults / ITEMS_PER_PAGE)}
           page={currentPage}
           onChange={handleChangePage}
-          color="primary"
+          color="standard"
         />
       </Stack>
     </Container>
