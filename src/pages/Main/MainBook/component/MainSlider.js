@@ -9,7 +9,7 @@ const MainBg = styled.div`
   width: 100%;
   max-width: 500px;
   height: 490px;
-  background: url(${(props) => props.bestseller?.cover}) center / cover
+  background: url(${(props) => props.$bestseller?.cover}) center / cover
     no-repeat;
   &::before {
     content: "";
@@ -27,7 +27,7 @@ const MainBook = styled.div`
   transform: translateX(-50%);
   width: 180px;
   height: 270px;
-  background: url(${(props) => props.bestseller?.cover}) center / cover
+  background: url(${(props) => props.$bestseller?.cover}) center / cover
     no-repeat;
   z-index: 3;
   cursor: pointer;
@@ -72,8 +72,8 @@ const MainSlider = ({ bestseller }) => {
     }
   };
   return (
-    <MainBg bestseller={bestseller}>
-      <MainBook onClick={goToBookDetail} bestseller={bestseller} />
+    <MainBg $bestseller={bestseller}>
+      <MainBook onClick={goToBookDetail} $bestseller={bestseller} />
       <Title onClick={goToBookDetail}>
         "{bestseller?.title.split("-", 1)}"
       </Title>

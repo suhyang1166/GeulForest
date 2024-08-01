@@ -7,10 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { createGlobalStyle } from "styled-components";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 const GlobalStyle = createGlobalStyle`
-/* reset & font */
-@import url(./assets/font/Font.css);
+/* reset */
 * {
     margin: 0;
     padding: 0;
@@ -35,8 +35,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <GlobalStyle />
-      <App />
+      <StyledEngineProvider injectFirst>
+        <GlobalStyle />
+        <App />
+      </StyledEngineProvider>
     </BrowserRouter>
   </Provider>
 );

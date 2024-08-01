@@ -20,7 +20,7 @@ const MainWebtoon = () => {
 
   const { todayWebtoons, providerWebtoons, pouplarWebtoons, authorWebtoons } =
     useSelector((state) => state.webtoons);
-  console.log("eee", pouplarWebtoons);
+  // console.log("eee", pouplarWebtoons);
 
   useEffect(() => {
     dispatch(webtoonAction.getWebtoonApi());

@@ -16,7 +16,7 @@ const Container = styled.div`
 const Cover = styled.div`
   width: 200px;
   height: 320px;
-  background: url(${(props) => props.img}) center / cover no-repeat;
+  background: url(${(props) => props.$img}) center / cover no-repeat;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 `;
 
@@ -65,11 +65,11 @@ const Line = styled.span`
 
 const BookDetailMain = ({ book }) => {
   const star = book?.subInfo?.ratingInfo?.ratingCount;
-  console.log(book);
+  // console.log(book);
 
   return (
     <Container>
-      <Cover img={book?.cover} />
+      <Cover $img={book?.cover} />
       <Title>
         <h3>{book?.title}</h3>
         <div>

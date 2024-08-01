@@ -19,7 +19,7 @@ const Container = styled.div`
 const Load = styled.div`
   width: 120px;
   height: 160px;
-  background: url(${(props) => props.img}) center/contain no-repeat;
+  background: url(${(props) => props.$img}) center/contain no-repeat;
   z-index: 100;
 `;
 
@@ -33,7 +33,7 @@ const Spinner = styled(Lottie)`
 const Loading = () => {
   return (
     <Container>
-      <Load img={LOAD} />
+      <Load $img={LOAD} />
       <Spinner animationData={spinner} />
     </Container>
   );
