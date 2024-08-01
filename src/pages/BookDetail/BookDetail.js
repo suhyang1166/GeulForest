@@ -32,7 +32,7 @@ const BookDetail = () => {
     dispatch(bookAction.getBooksApi(itemId)).then(() => setLoading(false));
   }, [dispatch, itemId]);
 
-  console.log("detailData", data);
+  // console.log("detailData", data);
 
   if (loading) {
     return <Loading2 />;

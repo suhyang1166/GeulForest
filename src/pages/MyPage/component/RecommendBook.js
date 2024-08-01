@@ -41,7 +41,7 @@ const RecommendBook = ({ authId }) => {
       </p>
       <RecommendWrap>
         {itemEditorChoiceBooks.item.map((book) => (
-          <BookItem book={book} />
+          <BookItem book={book} key={book.itemId} />
         ))}
       </RecommendWrap>
     </Container>

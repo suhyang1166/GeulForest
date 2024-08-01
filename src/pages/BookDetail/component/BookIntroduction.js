@@ -58,10 +58,10 @@ const More = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: ${(props) => (props.moreInfo ? "none" : "2")};
+    -webkit-line-clamp: ${(props) => (props.$moreInfo ? "none" : "2")};
     -webkit-box-orient: vertical;
     word-break: keep-all;
-    max-height: ${(props) => (props.moreInfo ? "none" : "4.5em")};
+    max-height: ${(props) => (props.$moreInfo ? "none" : "4.5em")};
     transition: max-height 0.3s ease;
   }
   p:last-child {
@@ -88,7 +88,7 @@ const InfoImg = styled.div`
   max-width: 500px;
   height: 100vw;
   max-height: 500px;
-  background: url(${(props) => props.img}) center / contain no-repeat;
+  background: url(${(props) => props.$img}) center / contain no-repeat;
 `;
 
 const BookIntroduction = ({ book }) => {
@@ -109,15 +109,15 @@ const BookIntroduction = ({ book }) => {
         {book?.description === "" ? (
           <h5>도서 정보가 없습니다.</h5>
         ) : (
-          <More moreInfo={moreInfo}>
+          <More $moreInfo={moreInfo}>
             <p>{book?.description}</p>
             <p onClick={handleMoreInfo}>{moreInfo ? "닫기" : "자세히 보기"}</p>
           </More>
         )}
       </Text>
       <ImgWrap>
-        {book?.subInfo?.cardReviewImgList?.map((item) => (
-          <InfoImg img={item.replace('"', "")} />
+        {book?.subInfo?.cardReviewImgList?.map((item, idx) => (
+          <InfoImg key={idx} $img={item.replace('"', "")} />
         ))}
       </ImgWrap>
       <span onClick={goToHomePage}>

@@ -15,11 +15,11 @@ const MainMenu = styled.div`
 `;
 
 const MainButton = styled(Link)`
-  font: ${({ active }) => (active ? "bold" : "normal")} 18px "SD R";
+  font: ${({ $active }) => ($active ? "bold" : "normal")} 18px "SD R";
   color: #fff;
   cursor: pointer;
   text-decoration: none;
-  border-bottom: ${({ active }) => (active ? "2px solid #fff" : "none")};
+  border-bottom: ${({ $active }) => ($active ? "2px solid #fff" : "none")};
 `;
 
 const MainBtn = () => {
@@ -41,15 +41,14 @@ const MainBtn = () => {
       <MainButton
         to="/"
         onClick={() => setActiveMenu("book")}
-        active={activeMenu == "book"}
+        $active={activeMenu == "book"}
       >
         도서
       </MainButton>
       <MainButton
         to="/webtoon"
         onClick={() => setActiveMenu("toon")}
-        s
-        active={activeMenu == "toon"}
+        $active={activeMenu == "toon"}
       >
         웹툰
       </MainButton>

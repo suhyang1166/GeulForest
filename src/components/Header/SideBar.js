@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "styled-components";
 import CLOSE from "../../assets/header/close.svg";
 import { useSelector } from "react-redux";
@@ -65,7 +65,7 @@ const Title = styled.h1`
 const Icon = styled.div`
   width: 30px;
   height: 30px;
-  background: url(${(props) => props.icon}) center/cover no-repeat;
+  background: url(${(props) => props.$icon}) center/cover no-repeat;
   cursor: pointer;
 `;
 
@@ -143,12 +143,20 @@ const SideBar = ({ onClose }) => {
     navigate("/mypage");
   };
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
   return (
     <SlideBarWrap>
       <UserWrap>
         <List>
           <Title>즐겨찾기</Title>
-          <Icon icon={CLOSE} onClick={handleClose} />
+          <Icon $icon={CLOSE} onClick={handleClose} />
         </List>
         {auth.authenciate === true ? (
           <WrapBook>
@@ -167,8 +175,8 @@ const SideBar = ({ onClose }) => {
             </Log>
             <p>베스트셀러 TOP 10</p>
             <RecommendWrap>
-              {bestsellerBooks.item.map((book) => (
-                <BookItem book={book} />
+              {bestsellerBooks.item.map((book, idx) => (
+                <BookItem book={book} key={book?.itemId} />
               ))}
             </RecommendWrap>
           </LogWrap>

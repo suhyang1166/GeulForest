@@ -28,7 +28,7 @@ const Footer = () => {
     <Container>
       <MenuContainer>
         <MenuToday
-          active={activeMenu === "today"}
+          $active={activeMenu === "today"}
           onClick={() => handleMenuClick("today", "/")}
         ></MenuToday>
         <Span>투데이</Span>
@@ -37,7 +37,7 @@ const Footer = () => {
       <MenuContainer>
         <MenuFeed
           onClick={() => handleMenuClick("feed", "/feed")}
-          active={activeMenu === "feed"}
+          $active={activeMenu === "feed"}
         ></MenuFeed>
         <Span>피드</Span>
       </MenuContainer>
@@ -45,7 +45,7 @@ const Footer = () => {
       <MenuContainer>
         <MenuSearch
           onClick={() => handleMenuClick("search", "/search")}
-          active={activeMenu === "search"}
+          $active={activeMenu === "search"}
         ></MenuSearch>
         <Span>검색</Span>
       </MenuContainer>
@@ -55,16 +55,16 @@ const Footer = () => {
           <>
             <UserImg
               onClick={() => handleMenuClick("mypage", "/mypage")}
-              active={activeMenu === "mypage"}
-              previewImg={previewImg}
+              $active={activeMenu === "mypage"}
+              $previewImg={previewImg}
             />
-            <Span active={activeMenu === "mypage"}>내서재</Span>
+            <Span $active={activeMenu === "mypage"}>내서재</Span>
           </>
         ) : (
           <>
             <MenuUser
               onClick={() => handleMenuClick("mypage", "/mypage")}
-              active={activeMenu === "mypage"}
+              $active={activeMenu === "mypage"}
             />
             <Span>로그인</Span>
           </>
@@ -105,16 +105,16 @@ const Span = styled.span`
   width: 100%;
   text-align: center;
   font-size: 12px;
-  font-weight: ${({ active }) => (active ? "bold" : "none")};
-  color: ${({ active }) => (active ? "#42D76B" : "#000")};
+  font-weight: ${({ $active }) => ($active ? "bold" : "none")};
+  color: ${({ $active }) => ($active ? "#42D76B" : "#000")};
 `;
 
 const MenuToday = styled.div`
   width: 100%;
   height: 50px;
   cursor: pointer;
-  background: ${({ active }) =>
-    active
+  background: ${({ $active }) =>
+    $active
       ? `url(${menuTodayCheck}) center no-repeat`
       : `url(${menuToday}) center no-repeat`};
 `;
@@ -122,8 +122,8 @@ const MenuFeed = styled.div`
   width: 100%;
   height: 50px;
   cursor: pointer;
-  background: ${({ active }) =>
-    active
+  background: ${({ $active }) =>
+    $active
       ? `url(${menuFeedCheck}) center no-repeat`
       : `url(${menuFeed}) center no-repeat`};
 `;
@@ -131,8 +131,8 @@ const MenuSearch = styled.div`
   width: 100%;
   height: 50px;
   cursor: pointer;
-  background: ${({ active }) =>
-    active
+  background: ${({ $active }) =>
+    $active
       ? `url(${menuSearchCheck}) center no-repeat`
       : `url(${menuSearch}) center no-repeat`};
 `;
@@ -142,10 +142,10 @@ const UserImg = styled.div`
   height: 32px;
   border-radius: 100%;
   margin-top: 4px;
-  background: ${({ active, previewImg }) =>
-    previewImg !== ""
-      ? `url(${previewImg}) center/cover no-repeat`
-      : active
+  background: ${({ $active, $previewImg }) =>
+    $previewImg !== ""
+      ? `url(${$previewImg}) center/cover no-repeat`
+      : $active
       ? `url(${menuUserCheck}) center no-repeat`
       : `url(${menuUser}) center no-repeat`};
   cursor: pointer;
@@ -155,8 +155,8 @@ const MenuUser = styled.div`
   width: 100%;
   height: 50px;
   cursor: pointer;
-  background: ${({ active }) =>
-    active
+  background: ${({ $active }) =>
+    $active
       ? `url(${menuUserCheck}) center no-repeat`
       : `url(${menuUser}) center no-repeat`};
 `;

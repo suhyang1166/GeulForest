@@ -1,7 +1,10 @@
-function login(id, password) {
-  return (dispatch, getState) => {
-    dispatch({ type: "LOGIN_SUCCESS", payload: { id, password } });
-  };
-}
+const login = (id, password) => ({
+  type: "LOGIN",
+  payload: { id, password },
+});
 
-export const authenciateAction = { login };
+const logout = () => ({
+  type: "LOGOUT",
+});
+
+export const authenciateAction = { login, logout };

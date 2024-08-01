@@ -14,6 +14,7 @@ import Loading from "./pages/Nodata/Loading";
 import { bookAction } from "./redux/actions/bookAction";
 import PrivateRoute from "./route/PrivateRoute";
 import Login from "./pages/Login/Login";
+import SearchDetail from "./pages/SearchDetail/SearchDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,15 +33,15 @@ function App() {
     <>
       <Header />
       <Routes>
-        {/* 메인 도서/웹툰 라우터 설정 재정리 필요 + 도서상세 */}
         <Route path="/" element={<MainBook />} />
-        <Route path="/:itemId" element={<BookDetail />} />
-        <Route path="/webtoon" element={<MainWebtoon />} />
-        <Route path="/feed" element={<Feed />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/category" element={<Category />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/mypage" element={<PrivateRoute />} />
+        <Route path=":itemId" element={<BookDetail />} />
+        <Route path="webtoon" element={<MainWebtoon />} />
+        <Route path="feed" element={<Feed />} />
+        <Route path="search" element={<Search />} />
+        <Route path="search/result" element={<SearchDetail />} />
+        <Route path="category" element={<Category />} />
+        <Route path="login" element={<Login />} />
+        <Route path="mypage" element={<PrivateRoute />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
