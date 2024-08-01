@@ -32,8 +32,8 @@ const Reviews = ({ book, type }) => {
 
   return (
     <Container>
-      <Icon icon={type === star ? faStar : faCommentDots} />
-      {type === star ? (
+      <Icon icon={type === "star" ? faStar : faCommentDots} />
+      {type === "star" ? (
         <>
           <p>도서 평점</p>
           <p>

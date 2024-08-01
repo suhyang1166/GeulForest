@@ -31,7 +31,7 @@ const BookWrap = styled.div`
     left: 0;
     width: inherit;
     height: inherit;
-    background-image: url(${(props) => props.bgImg});
+    background-image: url(${(props) => props.$bgImg});
     background-size: cover;
     background-position: center;
     border: 1px solid gray;
@@ -103,7 +103,7 @@ const NewBook = ({ newBook }) => {
   };
   return (
     <Container>
-      <BookWrap onClick={goToBookDetail} bgImg={newBook?.cover}>
+      <BookWrap onClick={goToBookDetail} $bgImg={newBook?.cover}>
         <BookImg>
           <img src={newBook?.cover} />
         </BookImg>

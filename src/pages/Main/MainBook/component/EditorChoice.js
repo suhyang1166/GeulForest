@@ -46,7 +46,7 @@ const RandomBook = styled.div`
     left: 0;
     width: inherit;
     height: inherit;
-    background-image: url(${(props) => props.bgImg});
+    background-image: url(${(props) => props.$bgImg});
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 2px #000;
@@ -175,7 +175,7 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
           {month}월 {day}일 {week}요일 업데이트
         </p>
       </Title>
-      <RandomBook bgImg={itemEditorChoiceBooks[randomIdx]?.cover}>
+      <RandomBook $bgImg={itemEditorChoiceBooks[randomIdx]?.cover}>
         <RandomItem onClick={goToBookDetail}>
           <RandomTitle>
             <h3>{itemEditorChoiceBooks[randomIdx]?.title.split(" ", 1)}</h3>

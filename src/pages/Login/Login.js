@@ -111,6 +111,7 @@ const Login = () => {
             value={id}
             onChange={(e) => setId(e.target.value)}
             required
+            autoComplete="username"
           />
           <PassWord
             type="password"
@@ -118,6 +119,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="current-password"
           />
           <LoginBtn>로그인</LoginBtn>
         </Form>

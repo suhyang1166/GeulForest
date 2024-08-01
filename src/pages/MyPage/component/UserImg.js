@@ -31,7 +31,7 @@ const UploadImg = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 100%;
-  background: url(${(props) => props.previewImg}) center/cover no-repeat;
+  background: url(${(props) => props.$previewImg}) center/cover no-repeat;
   cursor: pointer;
 `;
 
@@ -62,7 +62,7 @@ const UserImg = () => {
     <Container>
       {previewImg !== "" ? (
         <Label htmlFor="fileInput">
-          <UploadImg previewImg={previewImg} />
+          <UploadImg $previewImg={previewImg} />
           <p>프로필 설정</p>
         </Label>
       ) : (

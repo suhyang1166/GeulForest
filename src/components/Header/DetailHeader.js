@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import ARR from "../../assets/header/arr.svg";
 import MENU02 from "../../assets/header/menu-gray.svg";
 import { styled } from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SideBar from "./SideBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`
   position: fixed;
   top: ${(props) =>
-    props.showNav ? "0" : "-50px"}; /* showNav 상태에 따라 top 위치 설정 */
+    props.$showNav ? "0" : "-50px"}; /* showNav 상태에 따라 top 위치 설정 */
   width: 100%;
   max-width: 500px;
   height: 50px;
@@ -29,6 +30,8 @@ const Arr = styled.div`
   color: #666;
   background: url(${ARR}) center/cover no-repeat;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `;
 
 const Toggle = styled.div`
@@ -89,8 +92,8 @@ const DetailHeader = () => {
       {isToggle ? (
         <SideBar onClose={handleCloseSideBar} />
       ) : (
-        <Container showNav={showNav}>
-          <Arr icon={faChevronLeft} onClick={goBack} />
+        <Container $showNav={showNav}>
+          <Arr onClick={goBack} />
           <Toggle onClick={isToggleOpen} />
         </Container>
       )}

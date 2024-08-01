@@ -10,8 +10,7 @@ import { createGlobalStyle } from "styled-components";
 import { StyledEngineProvider } from "@mui/material/styles";
 
 const GlobalStyle = createGlobalStyle`
-/* reset & font */
-@import url(./assets/font/Font.css);
+/* reset */
 * {
     margin: 0;
     padding: 0;

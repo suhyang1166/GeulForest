@@ -11,7 +11,7 @@ import { setActiveMenu } from "../../redux/reducers/menuSlice";
 const Container = styled.div`
   position: fixed;
   top: ${(props) =>
-    props.showNav ? "0" : "-50px"}; /* showNav 상태에 따라 top 위치 설정 */
+    props.$showNav ? "0" : "-50px"}; /* showNav 상태에 따라 top 위치 설정 */
   width: 100%;
   max-width: 500px;
   height: 50px;
@@ -31,7 +31,7 @@ const Bg = styled.div`
   width: 100%;
   max-width: 500px;
   height: 50px;
-  background: rgba(0, 0, 0, ${(props) => (props.showNav ? "0.3" : "0")});
+  background: rgba(0, 0, 0, ${(props) => (props.$showNav ? "0.3" : "0")});
   z-index: 100;
   transition: all 0.3s ease-in-out;
 `;
@@ -46,7 +46,7 @@ const Logo = styled.div`
 const Toggle = styled.div`
   width: 35px;
   height: 35px;
-  background: url(${(props) => (props.isMenuIconBk ? MENUBK : MENU)})
+  background: url(${(props) => (props.$isMenuIconBk ? MENUBK : MENU)})
     center/cover no-repeat;
   z-index: 150;
   cursor: pointer;
@@ -109,10 +109,10 @@ const Header = () => {
         <SideBar onClose={handleCloseSideBar} />
       ) : (
         <>
-          {scrollPosition > 490 ? <Bg showNav={showNav} /> : null}
-          <Container showNav={showNav}>
+          {scrollPosition > 490 ? <Bg $showNav={showNav} /> : null}
+          <Container $showNav={showNav}>
             <Logo onClick={goToMain} />
-            <Toggle isMenuIconBk={isMenuIconBk} onClick={isToggleOpen} />
+            <Toggle $isMenuIconBk={isMenuIconBk} onClick={isToggleOpen} />
           </Container>
         </>
       )}

@@ -14,7 +14,7 @@ import { setActiveMenu } from "../../redux/reducers/menuSlice";
 const AddHeart = styled.span`
   width: 30px;
   height: 30px;
-  color: ${(props) => (props.changeIcon ? "red" : "lightgray")};
+  color: ${(props) => (props.$changeIcon ? "red" : "lightgray")};
   text-shadow: 0 0 10px red;
   z-index: 10;
   cursor: pointer;
@@ -57,7 +57,7 @@ const Heart = ({ book }) => {
           navigate("/login");
         }
       }}
-      changeIcon={changeIcon}
+      $changeIcon={changeIcon}
     >
       <FontAwesomeIcon
         icon={changeIcon ? solidHeart : regularHeart}
