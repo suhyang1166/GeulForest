@@ -8,7 +8,7 @@ const getBooksApi = (itemId, keyword) => {
 
     try {
       const bestsellerApi = bookApi.get(
-        `/api/ItemList.aspx?QueryType=Bestseller&MaxResults=10&start=1&SearchTarget=Book`
+        `/api/ItemList.aspx?QueryType=Bestseller&MaxResults=15&start=1&SearchTarget=Book`
       );
       const itemNewSpecialApi = bookApi.get(
         `/api/ItemList.aspx?QueryType=ItemNewSpecial&MaxResults=15&start=1&SearchTarget=Book`
