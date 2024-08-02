@@ -39,6 +39,8 @@ const RandomBook = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
   &::before {
     content: "";
     position: absolute;
@@ -53,6 +55,7 @@ const RandomBook = styled.div`
     border-radius: 10px;
     opacity: 0.2;
     z-index: -1;
+    filter: blur(3px);
   }
   span {
     position: absolute;

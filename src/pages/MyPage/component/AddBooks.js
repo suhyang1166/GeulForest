@@ -81,7 +81,7 @@ const AddBooks = () => {
       <h3>나의 서재</h3>
       <Wrap>
         <p>전체 {bookMark.length}권</p>
-        <span>최근 담은순</span>
+        <span></span>
       </Wrap>
       {bookMark?.length > 0 ? (
         <BookMark>
