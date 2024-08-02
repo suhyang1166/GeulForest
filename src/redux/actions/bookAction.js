@@ -1,6 +1,6 @@
 import { bookApi } from "../bookApi";
 
-const getBooksApi = (itemId, key, start) => {
+const getBooksApi = (itemId, keyword) => {
   return async (dispatch) => {
     dispatch({
       type: "GET_BOOK_REQUEST",
@@ -20,7 +20,7 @@ const getBooksApi = (itemId, key, start) => {
         `/api/ItemLookUp.aspx?itemIdType=itemId&ItemId=${itemId}&OptResult=usedList,cardReviewImgList,reviewList,ratingInfo,bestSellerRank`
       );
       const bookSearchApi = bookApi.get(
-        `/api/ItemSearch.aspx?Query=${key}&QueryType=Keyword&MaxResults=50&start=1&SearchTarget=Book`
+        `/api/ItemSearch.aspx?Query=${keyword}&QueryType=Keyword&MaxResults=50&start=1&SearchTarget=Book`
       );
 
       let [
