@@ -66,81 +66,114 @@ const isKorean = (text) => /[가-힣]/.test(text);
 const translateToKorean = (keyword) => AtoH.convert(keyword) || keyword;
 
 const SearchDetail = () => {
-  const [query] = useSearchParams();
-  const keyword = query.get("Query");
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("Query") || "";
   const dispatch = useDispatch();
   const searchResults = useSelector((state) => state.book.bookSearchBooks);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortedBooks, setSortedBooks] = useState([]);
-  const [sortType, setSortType] = useState("default");
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [originalBooks, setOriginalBooks] = useState([]);
+
+  // console.log("search", searchResults);
 
   // 페이지네이션 적용
   const ITEMS_PER_PAGE = 15;
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const translatedKeyword = translateToKorean(keyword);
+      const translatedKeyword = translateToKorean(query);
       await dispatch(bookAction.getBooksApi(null, translatedKeyword));
       setLoading(false);
     };
 
-    if (keyword) {
+    if (query) {
       setLoading(true);
       fetchBooks();
     }
-  }, [keyword, currentPage, dispatch]);
-
-  // 정렬한 각각의 함수 useEffect로 관리
-  useEffect(() => {
-    const sortBooks = () => {
-      let sorted = [...searchResults?.item];
-      if (sortType === "name") {
-        sorted.sort((a, b) => a.title.localeCompare(b.title));
-      } else if (sortType === "date") {
-        sorted.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-      }
-      setSortedBooks(sorted);
-    };
-
-    sortBooks();
-  }, [sortType, searchResults?.item]);
+  }, [query, dispatch]);
 
   const handleChangePage = (_, newPage) => {
     setCurrentPage(newPage);
   };
 
-  const handleSelectChange = (e) => {
-    const selectedSortType = e.target.value;
-    setSortType(selectedSortType);
-  };
+  useEffect(() => {
+    if (searchResults?.item) {
+      setOriginalBooks(searchResults.item);
+      const translatedQuery = translateToKorean(query);
 
-  const paginatedBooks = sortedBooks.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  );
+      // 키워드와 카테고리로 필터링
+      const filtered = searchResults.item.filter((book) => {
+        const category = book?.categoryName.split(">");
+        return (
+          book?.title.includes(translatedQuery) ||
+          book?.author.includes(translatedQuery) ||
+          category[1]?.includes(query)
+        );
+      });
+
+      setFilteredBooks(filtered);
+    }
+  }, [searchResults, query]);
 
   if (loading) {
     return <Loading2 />;
   }
 
+  // 정렬된 도서를 기준으로 페이지네이션 자르기
+  const paginatedBooks = filteredBooks.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  // console.log("filteredBooks", filteredBooks);
+
+  const handleSortDefault = () => {
+    setFilteredBooks(
+      originalBooks.filter((book) => {
+        const category = book?.categoryName.split(">");
+        return book?.title.includes(query) || category[1]?.includes(query);
+      })
+    );
+  };
+
+  const handleSortTitle = () => {
+    const sorted = [...filteredBooks].sort((a, b) =>
+      a.title.localeCompare(b.title)
+    );
+    setFilteredBooks(sorted);
+  };
+
+  const handleSortDate = () => {
+    const sorted = [...filteredBooks].sort(
+      (a, b) => new Date(b.pubDate) - new Date(a.pubDate)
+    );
+    setFilteredBooks(sorted);
+  };
+
   return (
     <Container>
       <InfoText>
-        {isKorean(keyword) ? (
+        {isKorean(query) ? (
           <p>
-            <b>"{keyword}"</b>에 대한 검색 결과입니다
+            <b>"{query}"</b>에 대한 검색 결과입니다
           </p>
         ) : (
           <p>
-            검색하신 <b>"{keyword}"</b>의 대한 수정된 결과입니다 :
-            <b>"{translateToKorean(keyword)}"</b>
+            검색하신 <b>"{query}"</b>의 대한 수정된 결과입니다 :
+            <b>"{translateToKorean(query)}"</b>
           </p>
         )}
       </InfoText>
       <Select>
         <p>전체 {searchResults?.totalResults}권</p>
-        <select value={sortType} onChange={handleSelectChange}>
+        <select
+          onChange={(e) => {
+            if (e.target.value === "default") handleSortDefault();
+            if (e.target.value === "name") handleSortTitle();
+            if (e.target.value === "date") handleSortDate();
+          }}
+        >
           <option value="default">기본순</option>
           <option value="name">이름순</option>
           <option value="date">출간순</option>
