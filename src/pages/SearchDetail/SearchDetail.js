@@ -166,7 +166,12 @@ const SearchDetail = () => {
         )}
       </InfoText>
       <Select>
-        <p>전체 {searchResults?.totalResults}권</p>
+        {searchResults?.totalResults <= 15 ? (
+          <p>전체 {filteredBooks?.length}권</p>
+        ) : (
+          <p>전체 {searchResults?.totalResults}권</p>
+        )}
+
         <select
           onChange={(e) => {
             if (e.target.value === "default") handleSortDefault();
