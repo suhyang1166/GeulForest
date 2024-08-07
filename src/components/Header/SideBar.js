@@ -34,6 +34,7 @@ const UserWrap = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
 `;
 
 const List = styled.div`
@@ -76,12 +77,16 @@ const LogWrap = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  margin-top: 100px;
+  p {
+    font-size: 20px;
+    font-weight: bold;
+  }
 `;
 
 const Log = styled.div`
   width: 140px;
   height: 50px;
+  margin-bottom: 30px;
 `;
 
 const LoginUser = styled.div`
@@ -109,6 +114,8 @@ const WrapBook = styled.div`
   justify-content: center;
   align-items: start;
   margin-top: 20px;
+  padding-bottom: 100px;
+  margin-top: 120px;
 `;
 
 const User = styled.div`
@@ -173,11 +180,12 @@ const SideBar = ({ onClose }) => {
             <Log>
               <LoginUser onClick={goToLogin}>로그인</LoginUser>
             </Log>
-            <p>베스트셀러 TOP 10</p>
+            <p>베스트셀러 TOP</p>
             <RecommendWrap>
               {bestsellerBooks.item.map((book, idx) => (
                 <BookItem book={book} key={book?.itemId} />
               ))}
+              <p></p>
             </RecommendWrap>
           </LogWrap>
         )}

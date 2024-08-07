@@ -1,5 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import BookItem from "./BookItem";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -92,7 +94,7 @@ const RandomImg = styled.div`
   }
 `;
 
-const ItemWrap = styled.div`
+const ItemWrap = styled(Swiper)`
   width: 100%;
   height: 100%;
   display: flex;
@@ -107,13 +109,15 @@ const ItemWrap = styled.div`
   }
 `;
 
-const EditorChoice = ({ itemEditorChoiceBooks }) => {
-  // 가로스크롤 이벤트 함수
-  const scrollRef = useRef(null);
-  const [isDrag, setIsDrag] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+const Items = styled(SwiperSlide)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
 
+const EditorChoice = ({ itemEditorChoiceBooks }) => {
   const authenciate = useSelector((state) => state.auth.authenciate);
   const navigate = useNavigate();
 
@@ -127,35 +131,6 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
     }
   };
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (isDrag) {
-        const newScrollLeft = startX - e.pageX + scrollLeft;
-        scrollRef.current.scrollLeft = newScrollLeft;
-      }
-    };
-
-    const handleMouseUp = () => {
-      setIsDrag(false);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isDrag, startX, scrollLeft]);
-
-  const onDragStart = (e) => {
-    e.preventDefault();
-    setIsDrag(true);
-    setStartX(e.pageX);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
-
-  // 드래그 이벤트로 발생되는 변동사항으로 랜덤 이미지 계속 변경됨 > 새로고침 할때만 랜덤함수 실행
   const [randomIdx, setRandomIdx] = useState(null);
 
   // 컴포넌트가 처음 마운트될 때 랜덤 인덱스 설정
@@ -195,9 +170,27 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
           <Heart book={itemEditorChoiceBooks[randomIdx]} />
         </span>
       </RandomBook>
-      <ItemWrap onMouseDown={onDragStart} ref={scrollRef}>
+      <ItemWrap
+        // slidesPerView={2.7}
+        spaceBetween={15}
+        grabCursor={true}
+        breakpoints={{
+          430: {
+            slidesPerView: 3.8,
+          },
+          391: {
+            slidesPerView: 3.3,
+          },
+          0: {
+            slidesPerView: 2.8,
+          },
+        }}
+        modules={[Pagination]}
+      >
         {itemEditorChoiceBooks.map((book, idx) => (
-          <BookItem key={idx} book={book} />
+          <Items key={idx}>
+            <BookItem book={book} />
+          </Items>
         ))}
       </ItemWrap>
     </Container>

@@ -1,5 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import NewBook from "./NewBook";
 
 const Container = styled.div`
@@ -26,7 +28,7 @@ const Title = styled.div`
   }
 `;
 
-const ItemWrap = styled.div`
+const ItemWrap = styled(Swiper)`
   width: 100%;
   height: 100%;
   display: flex;
@@ -40,6 +42,14 @@ const ItemWrap = styled.div`
   }
 `;
 
+const Items = styled(SwiperSlide)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
 const NewBooks = ({ itemNewSpecialBooks }) => {
   return (
     <Container>
@@ -47,9 +57,27 @@ const NewBooks = ({ itemNewSpecialBooks }) => {
         <h1>따끈따근 신간 도서</h1>
         <p>모두가 기다리던 신간 바로 여기서 확인하세요!</p>
       </Title>
-      <ItemWrap>
+      <ItemWrap
+        slidesPerView={1.6}
+        spaceBetween={15}
+        grabCursor={true}
+        breakpoints={{
+          430: {
+            slidesPerView: 2.2,
+          },
+          391: {
+            slidesPerView: 1.8,
+          },
+          0: {
+            slidesPerView: 1.6,
+          },
+        }}
+        modules={[Pagination]}
+      >
         {itemNewSpecialBooks.map((newBook, idx) => (
-          <NewBook key={idx} newBook={newBook} />
+          <Items key={idx}>
+            <NewBook newBook={newBook} />
+          </Items>
         ))}
       </ItemWrap>
     </Container>
