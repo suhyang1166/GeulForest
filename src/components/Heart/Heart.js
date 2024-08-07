@@ -10,6 +10,7 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { setActiveMenu } from "../../redux/reducers/menuSlice";
+import { authenciateAction } from "../../redux/actions/authenciateAction";
 
 const AddHeart = styled.span`
   width: 30px;
@@ -34,6 +35,12 @@ const Heart = ({ book }) => {
   useEffect(() => {
     setChangeIcon(isBookMarked);
   }, [isBookMarked, bookMark]);
+
+  useEffect(() => {
+    if (!authenciate) {
+      setChangeIcon(false); // 로그아웃 시 하트 표시 초기화
+    }
+  }, [authenciate]);
 
   const toggleBookMark = () => {
     if (changeIcon) {

@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 10vh;
 `;
 
 const Comment = () => {
-  return <Container>Comment</Container>;
+  return <Container></Container>;
 };
 
 export default Comment;

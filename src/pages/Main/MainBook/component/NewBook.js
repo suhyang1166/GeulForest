@@ -23,6 +23,7 @@ const BookWrap = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  border-radius: 10px;
   overflow: hidden;
   &::before {
     content: "";
@@ -36,7 +37,8 @@ const BookWrap = styled.div`
     background-position: center;
     border: 1px solid gray;
     border-radius: 10px;
-    opacity: 0.2;
+    opacity: 0.3;
+    filter: blur(3px);
   }
   p:nth-of-type(1) {
     font-weight: bold;

@@ -1,5 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Grid, Pagination } from "swiper/modules";
 import BestBook from "./BestBook";
 
 const Container = styled.div`
@@ -26,19 +28,18 @@ const Title = styled.div`
   }
 `;
 
-const ItemWrap = styled.div`
+const ItemWrap = styled(Swiper)`
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 15px;
+  height: 400px;
   margin-bottom: 100px;
-  overflow-x: scroll;
-  cursor: pointer;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+`;
+
+const Items = styled(SwiperSlide)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: calc((100% - 40px) / 3) !important;
 `;
 
 // 현재시간함수
@@ -52,14 +53,30 @@ const BestSeller = ({ bestseller }) => {
   return (
     <Container>
       <Title>
-        <h1>지금! 베스트 셀러 TOP 10</h1>
+        <h1>지금! 베스트 셀러 TOP 15</h1>
         <p>
           {month}월 {day}일 {week}요일 업데이트
         </p>
       </Title>
-      <ItemWrap>
+      <ItemWrap
+        grid={{
+          rows: 3,
+        }}
+        spaceBetween={20}
+        breakpoints={{
+          430: {
+            slidesPerView: 1.5,
+          },
+          0: {
+            slidesPerView: 1.2,
+          },
+        }}
+        modules={[Grid, Pagination]}
+      >
         {bestseller.map((best, idx) => (
-          <BestBook key={idx} best={best} />
+          <Items key={idx}>
+            <BestBook best={best} />
+          </Items>
         ))}
       </ItemWrap>
     </Container>

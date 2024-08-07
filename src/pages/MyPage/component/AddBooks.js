@@ -43,20 +43,23 @@ const NoBook = styled.div`
 
 const BookMark = styled.div`
   width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-  align-content: space-between;
   gap: 10px;
 `;
 
 const Logout = styled.div`
   width: 100%;
-  height: 50px;
+  height: 150px;
+  margin-top: 50px;
   p {
+    width: 100%;
+    height: 150px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
+    margin: 0;
     &:hover {
       color: #42d76b;
       font-weight: bold;
@@ -81,7 +84,7 @@ const AddBooks = () => {
       <h3>나의 서재</h3>
       <Wrap>
         <p>전체 {bookMark.length}권</p>
-        <span>최근 담은순</span>
+        <span></span>
       </Wrap>
       {bookMark?.length > 0 ? (
         <BookMark>
