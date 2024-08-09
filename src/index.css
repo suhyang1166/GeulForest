@@ -1,13 +1,50 @@
+@font-face {
+  font-family: "SD B";
+  src: url(./assets/font/AppleSDGothicNeoB.ttf);
+}
+@font-face {
+  font-family: "SD EB";
+  src: url(./assets/font/AppleSDGothicNeoEB.ttf);
+}
+@font-face {
+  font-family: "SD H";
+  src: url(./assets/font/AppleSDGothicNeoH.ttf);
+}
+@font-face {
+  font-family: "SD L";
+  src: url(./assets/font/AppleSDGothicNeoL.ttf);
+}
+@font-face {
+  font-family: "SD M";
+  src: url(./assets/font/AppleSDGothicNeoM.ttf);
+}
+@font-face {
+  font-family: "SD R";
+  src: url(./assets/font/AppleSDGothicNeoR.ttf);
+}
+@font-face {
+  font-family: "SD SB";
+  src: url(./assets/font/AppleSDGothicNeoSB.ttf);
+}
+@font-face {
+  font-family: "SD T";
+  src: url(./assets/font/AppleSDGothicNeoT.ttf);
+}
+@font-face {
+  font-family: "SD UL";
+  src: url(./assets/font/AppleSDGothicNeoUL.ttf);
+}
+
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
