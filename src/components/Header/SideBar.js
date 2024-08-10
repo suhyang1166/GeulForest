@@ -113,7 +113,6 @@ const WrapBook = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  margin-top: 20px;
   padding-bottom: 100px;
   margin-top: 120px;
 `;

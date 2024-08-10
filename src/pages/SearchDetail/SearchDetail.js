@@ -94,6 +94,7 @@ const SearchDetail = () => {
   }, [query, dispatch]);
 
   const handleChangePage = (_, newPage) => {
+    window.scroll(0, 0);
     setCurrentPage(newPage);
   };
 

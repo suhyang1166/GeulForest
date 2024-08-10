@@ -42,6 +42,7 @@ const Title = styled.p`
   font-weight: bold;
   font-size: 20px;
   z-index: 10;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
   word-break: keep-all;
   cursor: pointer;
 `;
