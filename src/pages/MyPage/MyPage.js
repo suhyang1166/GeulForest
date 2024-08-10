@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import MyProfile from "./component/MyProfile";
 import AddBooks from "./component/AddBooks";
@@ -17,6 +17,9 @@ const Container = styled.div`
 `;
 
 const MyPage = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <Container>
       <MyProfile />

@@ -156,7 +156,7 @@ const EditorChoice = ({ itemEditorChoiceBooks }) => {
       <RandomBook $bgImg={itemEditorChoiceBooks[randomIdx]?.cover}>
         <RandomItem onClick={goToBookDetail}>
           <RandomTitle>
-            <h3>{itemEditorChoiceBooks[randomIdx]?.title.split(" ", 1)}</h3>
+            <h3>{itemEditorChoiceBooks[randomIdx]?.title.split("-", 1)}</h3>
             <p>{itemEditorChoiceBooks[randomIdx]?.author.split(" ", 1)} 저자</p>
           </RandomTitle>
           <RandomImg>
