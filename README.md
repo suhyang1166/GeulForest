@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+# 글숲 (GeulForest)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://geulforest.netlify.app/)
 
-## Available Scripts
+[**Website**](https://geulforest.netlify.app/) | [**Figma Design**](https://www.figma.com/design/6f8sd1uARovQCQwaTK6zbu/BOOK?node-id=1-3&t=O5kHxcTVjyBQXfnS-1) | [**GitHub Repository**](https://github.com/suhyang1166/GeulForest)
 
-In the project directory, you can run:
+## 🙌 프로젝트 소개
 
-### `npm start`
+"글숲(GeulForest)"은 알라딘 API를 이용하여 도서 정보를 제공하는 웹 애플리케이션입니다. 이 프로젝트는 사용자 인증을 통해 로그인을 한 유저만이 도서 검색, 상세 페이지 조회, 북마크 기능을 사용할 수 있도록 구현되었습니다. 사용자는 다양한 추천 도서를 확인할 수 있으며, Redux를 사용하여 상태 관리를 수행하였습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🖥️ 기술 스택
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
 
-### `npm test`
+- React
+- Redux
+- styled-components
+- Swiper
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 서비스 배포 환경
 
-### `npm run build`
+- Netlify
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🗂️ 페이지 구성
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Main**
+- **Search**
+- **Login**
+- **Mypage**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ❌ CORS ERR 해결
 
-### `npm run eject`
+알라딘 API를 호출하는 과정에서 CORS 오류가 발생하여, `setupProxy` 미들웨어를 사용해 프록시 서버를 설정하여 문제를 해결하였습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ✅ 주요 기능
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 메인페이지
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Swiper를 이용한 자동 슬라이드 및 드래그 기능을 통해 사용자가 다양한 도서를 탐색할 수 있도록 구현하였습니다.
+- 로그인한 사용자는 도서의 상세 정보와 북마크 기능을 사용할 수 있으며, Redux를 활용하여 상태 관리를 효율적으로 처리하였습니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 상세페이지
 
-## Learn More
+- 도서의 상세 정보 페이지에서는 북마크 기능과 책 소개 부분에서 토글 버튼을 사용하여 UI의 일관성을 유지하였습니다.
+- 이를 통해 사용자 경험을 향상시켰습니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 로그인 / 마이페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 마이페이지에 이미지 업로드 기능을 추가하여, Redux로 관리된 이미지가 푸터에도 자동으로 연동되도록 구현하였습니다.
+- 도서 추천 기능을 통해 다양한 추천 도서를 제공합니다.
 
-### Code Splitting
+### 검색페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 사용자는 키워드 검색 또는 카테고리 선택을 통해 도서를 검색할 수 있습니다.
+- 검색 결과는 영어로 입력된 경우에도 한글로 자동 번역되어 제공되며, MUI 라이브러리를 이용해 페이지네이션 기능을 구현하여 많은 결과를 쉽게 탐색할 수 있도록 하였습니다.
 
-### Analyzing the Bundle Size
+## 📁 프로젝트 구성
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+public
+src
+├─ assets
+│  ├─ font
+│  ├─ header
+│  ├─ images
+│  ├─ loading
+│  ├─ lottie
+│  └─ source
+├─ components
+│  ├─ Btn
+│  │  └─ MainBtn.js
+│  ├─ Footer
+│  │  └─ Footer.js
+│  ├─ Header
+│  │  ├─ DetailHeader.js
+│  │  ├─ Header.js
+│  │  └─ SideBar.js
+│  └─ Heart
+│     └─ Heart.js
+├─ pages
+│  ├─ BookDetail
+│  │  ├─ component
+│  │  │  ├─ BookDetailMain.js
+│  │  │  ├─ BookIntroduction.js
+│  │  │  ├─ Category.js
+│  │  │  ├─ Comment.js
+│  │  │  └─ Reviews.js
+│  │  └─ BookDetail.js
+│  ├─ Category
+│  │  └─ Category.js
+│  ├─ Feed
+│  │  └─ Feed.js
+│  ├─ Login
+│  │  └─ Login.js
+│  ├─ Main
+│  │  ├─ MainBook
+│  │  │  ├─ component
+│  │  │  │  ├─ BestBook.js
+│  │  │  │  ├─ BestSeller.js
+│  │  │  │  ├─ BookItem.js
+│  │  │  │  ├─ BookMark.js
+│  │  │  │  ├─ EditorChoice.js
+│  │  │  │  ├─ MainSlider.js
+│  │  │  │  ├─ NewBook.js
+│  │  │  │  ├─ NewBooks.js
+│  │  │  │  └─ swiper.css
+│  │  └─ MainWebtoon
+│  │     ├─ component
+│  │     │  ├─ MainSlider.js
+│  │     │  └─ MainTodayToon.js
+│  │     └─ MainWebtoon.js
+│  ├─ MyPage
+│  │  ├─ component
+│  │  │  ├─ AddBooks.js
+│  │  │  ├─ MyProfile.js
+│  │  │  ├─ RecommendBook.js
+│  │  │  └─ UserImg.js
+│  │  └─ MyPage.js
+│  ├─ Nodata
+│  │  ├─ Loading.js
+│  │  ├─ Loading2.js
+│  │  └─ NotFoundPage.js
+│  ├─ Search
+│  │  ├─ component
+│  │  │  └─ CategorySearch.js
+│  │  └─ Search.js
+│  ├─ SearchDetail
+│  │  └─ SearchDetail.js
+├─ redux
+│  ├─ actions
+│  │  ├─ authenciateAction.js
+│  │  ├─ bookAction.js
+│  │  ├─ bookMarkAction.js
+│  │  └─ webtoonAction.js
+│  ├─ reducers
+│  │  ├─ authenciateReducer.js
+│  │  ├─ bookMarkSlice.js
+│  │  ├─ bookReducer.js
+│  │  ├─ index.js
+│  │  ├─ menuSlice.js
+│  │  ├─ userImgSlice.js
+│  │  └─ webtoonReducer.js
+│  ├─ api.js
+│  ├─ bookApi.js
+│  ├─ store.js
+│  └─ webtoonApi.js
+├─ route
+│  └─ PrivateRoute.js
+├─ App.js
+├─ index.css
+├─ index.js
+└─ setupProxy.js
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
