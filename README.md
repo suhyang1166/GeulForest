@@ -1,13 +1,8 @@
 # 글숲 (GeulForest)
 
-<p align="center">
-    <img src="./book.gif" alt="gif" width="200" />
-</p>
+ <img src="./book.gif" alt="gif" width="200" />
 
-<p align="center">
-    <a href="https://geulforest.netlify.app/">Site</a> | 
-    <a href="https://www.figma.com/design/6f8sd1uARovQCQwaTK6zbu/BOOK?node-id=1-3&t=O5kHxcTVjyBQXfnS-1">Figma</a>
-</p>
+[**Website**](https://geulforest.netlify.app/) | [**Figma Design**](https://www.figma.com/design/6f8sd1uARovQCQwaTK6zbu/BOOK?node-id=1-3&t=O5kHxcTVjyBQXfnS-1)
 
 ## 🙌 프로젝트 소개
 
