@@ -1,7 +1,5 @@
 # 글숲 (GeulForest)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://geulforest.netlify.app/)
-
 [**Website**](https://geulforest.netlify.app/) | [**Figma Design**](https://www.figma.com/design/6f8sd1uARovQCQwaTK6zbu/BOOK?node-id=1-3&t=O5kHxcTVjyBQXfnS-1) | [**GitHub Repository**](https://github.com/suhyang1166/GeulForest)
 
 ## 🙌 프로젝트 소개
