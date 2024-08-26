@@ -1,10 +1,12 @@
-let initialState = {
+import { AuthState, AuthAction } from "../../types/authTypes";
+
+let initialState: AuthState = {
   id: "",
   password: "",
   authenciate: false,
 };
 
-function authenciateReducer(state = initialState, action) {
+function authenciateReducer(state = initialState, action: AuthAction) {
   let { type, payload } = action;
   switch (type) {
     case "LOGIN":

@@ -1,7 +1,7 @@
 import { bookApi } from "../bookApi";
 
-const getBooksApi = (itemId, keyword) => {
-  return async (dispatch) => {
+const getBooksApi = (itemId: string, keyword: string) => {
+  return async (dispatch: any) => {
     dispatch({
       type: "GET_BOOK_REQUEST",
     });
@@ -47,7 +47,7 @@ const getBooksApi = (itemId, keyword) => {
           bookSearchBooks: bookSearchBooks.data,
         },
       });
-    } catch (error) {
+    } catch (error: any) {
       dispatch({
         type: "GET_BOOK_FAILURE",
         payload: error.message,

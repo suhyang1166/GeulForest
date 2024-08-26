@@ -1,10 +1,10 @@
 import React from "react";
-import MainBtn from "../../../components/Btn/MainBtn";
 import { useSelector } from "react-redux";
-import MainSlider from "./component/MainSlider";
-import EditorChoice from "./component/EditorChoice";
-import NewBooks from "./component/NewBooks";
-import BestSeller from "./component/BestSeller";
+import MainBtn from "../../../components/Btn/MainBtn.tsx";
+import MainSlider from "./component/MainSlider.js";
+import EditorChoice from "./component/EditorChoice.js";
+import NewBooks from "./component/NewBooks.js";
+import BestSeller from "./component/BestSeller.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";

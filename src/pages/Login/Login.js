@@ -27,6 +27,9 @@ const Wrap = styled.div`
     color: #42d76b;
     font-weight: bold;
   }
+  p {
+    text-align: center;
+  }
 `;
 
 const Form = styled.form`
@@ -110,7 +113,7 @@ const Login = () => {
             placeholder="아이디"
             value={id}
             onChange={(e) => setId(e.target.value)}
-            required
+            // required
             autoComplete="username"
           />
           <PassWord
@@ -118,11 +121,16 @@ const Login = () => {
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+            // required
             autoComplete="current-password"
           />
           <LoginBtn>로그인</LoginBtn>
         </Form>
+        <p>
+          현재 로그인 기능 작업 중 입니다.
+          <br />
+          로그인 버튼을 누르면 페이지 확인이 가능합니다!
+        </p>
       </Wrap>
     </Container>
   );
